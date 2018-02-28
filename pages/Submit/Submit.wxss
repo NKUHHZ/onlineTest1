@@ -1,0 +1,37 @@
+/* pages/Submit/Submit.wxss */
+.itemView{
+  padding-top: 50rpx;
+}
+.text_2{
+
+  color:#666699;
+}
+
+.button1{
+  background-color: #99CCFF;
+  color: white;
+}
+#panel{
+  height:65vh;
+  background:#fff;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.flex-cell{
+  flex: 1;
+  width:150px;
+  height:100px;
+  padding-left: 50px;
+}

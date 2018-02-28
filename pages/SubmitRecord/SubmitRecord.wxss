@@ -1,0 +1,48 @@
+/* pages/More/More.wxss */
+.userPic{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50rpx;
+}
+.image_frame{
+   width: 128rpx;
+  height: 128rpx;
+  margin: 40rpx;
+  border-radius: 50%;
+}
+.userInfo{
+  display: flex;
+  flex-direction: row;
+}
+.scrollView{
+  padding-top: 100rpx
+}
+
+.head{
+  display: flex;
+  flex-direction:row;
+  padding: 20px;
+  height:15%;
+}
+
+.imgs{
+   display: flex;
+  flex-direction: row;
+}
+.right{
+  display: flex;
+  flex-direction: row;
+}
+.images{
+  display: flex;
+  flex-direction: row;
+  width:100px;
+  height:100px;
+  padding: 30px;
+}
+.tail{
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  height: 60px;
+}

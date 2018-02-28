@@ -1,0 +1,27 @@
+ <!--用户上传记录-->
+ <view class='container'>
+ <view class='userPic'> 
+ <text>{{userInfo.nickName}}</text>
+  <image class="image_frame" src="{{userInfo.avatarUrl}}" mode="aspectFill">  </image>  <!--imageUr是加载图片的地址-->
+  </view>
+ <scroll-view class='scrollView'>
+   <block wx:for="{{list}}" wx:key="item" wx:for-index="i">
+   <view class="head">
+    <text style='width=40px'>用户名</text>
+    <button style="width=50px height=30px" bindtap='attentionUser'>关注</button>
+   </view>
+    <view class="right" style='border:solid'>
+      <block wx:for="{{paths[i]}}" wx:key="item" class='imgs'>
+        <image src="{{item}}" class='images'></image>
+      </block>
+    </view>
+    <view class='tail'>
+      <button style='width=50px height=30px' bindtap='attentionUpload'>关注</button>
+      <view class='text_view'>
+        <text>{{item.upload_time}}</text>
+        <text>{{item.upload_location}}</text>
+      </view>
+    </view>
+</block>
+</scroll-view>
+</view>

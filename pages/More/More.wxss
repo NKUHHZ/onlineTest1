@@ -1,0 +1,45 @@
+/* pages/More/More.wxss */
+.userPic{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50rpx;
+}
+.userInfo{
+  display: flex;
+  flex-direction: row;
+}
+.image_frame{
+   width: 128rpx;
+  height: 128rpx;
+  margin: 40rpx;
+  border-radius: 50%;
+}
+.scrollView{
+  padding-top: 50rpx;
+}
+.button_1{
+  
+  background-color: #99CCFF;
+   color: white;
+  }
+.button_2{
+  
+  background-color: #99CCFF;
+   color: white;
+  }
+  .button_3{
+  
+  background-color: #99CCFF;
+   color: white;
+  }
+  .button_4{
+  
+  background-color: #99CCFF;
+   color: white;
+  }
+  .image6{
+   width: 128rpx;
+  height: 128rpx;
+  margin: 40rpx;
+  border-radius: 50%;
+}

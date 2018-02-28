@@ -1,0 +1,23 @@
+ <!--更多页面-->
+ <view class='container'>
+ <view class='userPic'> 
+ <text>{{userInfo.nickName}}</text>
+  <image class="image_frame" src="{{userInfo.avatarUrl}}" mode="aspectFill">  </image>  <!--imageUr是加载图片的地址-->
+  </view>
+<!--attention、location、record均为用户信息-->
+<view class = 'userInfo'>
+<text>
+<text>{{"关注度 "+attention+" "}}</text>
+<text>{{"地区 "+userInfo.city+" "}}</text>
+<text>{{"上传记录数 "+record}}</text>
+</text>
+</view>
+ <scroll-view class='scrollView'>
+<view>
+<button class='button_1' bindtap='toRecord'>上传记录</button>
+</view>
+<view><button class='button_2' >各地区上传情况</button></view><!--情况按钮-->
+<view><button class='button_3' >关注的用户</button></view><!--关注按钮-->
+<view><button class='button_4'>关于小程序</button></view><!--关于小程序按钮-->
+</scroll-view>
+</view>

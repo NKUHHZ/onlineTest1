@@ -1,0 +1,8 @@
+.submitView{
+  padding-top: 80rpx;
+  
+}
+.button1{
+  background-color: #99CCFF;
+   color: white;
+}

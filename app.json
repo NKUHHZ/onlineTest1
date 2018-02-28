@@ -1,0 +1,45 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/Submit/Submit",
+    "pages/Imformation/Imformation",
+    "pages/More/More",
+    "pages/MapPage/MapPage",
+    "pages/SubmitRecord/SubmitRecord"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "环保小督查",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar":
+  {
+
+    "color": "black",
+    "selectedColor": "gray",
+    "backgroundColor": "white",
+    "borderStyle": "black",
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "iconPath": "res/3.png",
+
+        "text":"首页"
+      },
+      {
+        "pagePath":"pages/MapPage/MapPage",
+        "iconPath": "res/5.png",
+        "text":"上传"
+      },
+      {
+        "pagePath":"pages/More/More",
+        "iconPath": "res/4.png",
+        "text":"更多"
+      }
+
+    ]
+
+  }
+}
