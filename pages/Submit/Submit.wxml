@@ -2,15 +2,15 @@
 <view class="itemView">
    
   <text class='text_2'>是否匿名上传</text>
-<switch type="switch"  bindchange="listenerSwitch"/>
+<switch type="switch"  bindchange="listenerSwitch" />
 </view>
   <view>
      <view id="panel" class="flex-column">
   <view class="flex-row">
-    <image src="{{imageUrl1}}" class="flex-cell"></image>
-    <image src="{{imageUrl2}}" class="flex-cell"></image>
-    <image src="{{imageUrl3}}" class="flex-cell"></image>
-    <image src="{{imageUrl4}}" class="flex-cell"></image>
+    <image src="{{imageUrl1}}" class="flex-cell" mode="aspectFit"></image>
+    <image src="{{imageUrl2}}" class="flex-cell" mode="aspectFit"></image>
+    <image src="{{imageUrl3}}" class="flex-cell" mode="aspectFit"></image>
+    <image src="{{imageUrl4}}" class="flex-cell" mode="aspectFit"></image>
   </view>
   <view class="flex-row">
     <image src="{{imageUrl5}}" class="flex-cell"></image>
@@ -20,6 +20,9 @@
   </view>
 
 </view>
-  <button class='button1' bindtap='upload'>点击上传</button><!--图片上传按钮-->
+  <view><text class='address'>当前地点{{address}}</text></view>
+  <view><text class='ifAnonymity'>ifAnonymity{{ifAnonymity}}</text></view>
+  <button class='button1' bindtap='selectImage' >选择图片</button><!--图片选择按钮-->
+  <button class='button1' bindtap='upload' disabled="{{disabled}}">点击上传</button><!--图片上传按钮-->
   </view>
 

@@ -13,7 +13,7 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    queryRequest(that);//不知道应该把request放在哪里...总是报错...心情复杂
+    queryRequest(that);
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
