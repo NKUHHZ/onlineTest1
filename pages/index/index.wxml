@@ -1,27 +1,25 @@
 <!--首页-->
 <!--是否显示圆点，自动播放， 间隔时间， 监听滚动和点击事件-->
-<swiper indicator-dots="true" autoplay="true" duration="1000" bindchange="listenSwiper" >
-<!--swiper-item只能包含一个节点再多会自动删除-->
-    <swiper-item>
-        <view style="background: red; height: 150px"></view>
+<swiper indicator-dots="true" autoplay="true" duration="100" bindchange="listenSwiper" >
+  <swiper-item wx:for="{{topStories}}">
+      <image mode="scaleToFill" src="{{item}}" class="slide-image" width="355" height="150"/>
     </swiper-item>
-    <swiper-item>
-         <view style="background: green; height: 150px"></view>
-    </swiper-item>
-        <swiper-item>
-          <view style="background: blue; height: 150px"></view>
-    </swiper-item>    
 </swiper>
-<scroll-view style='padding-top:50rpx'>
-  <view class='view1'><!--一个view就是滚动视图中列表的一项-->
-    <!--左上角的用户名称-->
-    <text style='font-size:40rpx' class='text_1' >用户名</text>
-    </view>
-    <view style='font-size:40rpx' class='text_2'><div class='div1'>
-      推送的信息
-      </div>
-    </view>
-</scroll-view>
+<view class="themes-box-top">
+      <text class="themes-box-title">每日热点</text>
+        <text class="themes-box-subtitle">你想要知道的环境热点</text>
+  </view>
+<!-- 日报列表 -->
+<scroll-view scroll-y="true" enable-back-to-top="true" scroll-top="5">
+  <view hidden="{{hotshidden}}" class="hot-box-more">
+                <view wx:if="{{hothidden}}">
+                    <image src="/res/loading.gif" mode="aspectFill"/>
+                </view>
+                <view wx:else>
+                    <text> 没有更多了 </text>
+                </view>
+            </view>
 
+</scroll-view>
 
 

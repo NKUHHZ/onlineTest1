@@ -1,6 +1,11 @@
 Page({
   data: {
-    text:"这是一个页面"
+    topStories:[
+      'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=684276477,2474013616&fm=27&gp=0.jpg',
+      'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1623529198,932220174&fm=27&gp=0.jpg',
+  'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1446989525,2907093786&fm=27&gp=0.jpg',
+  'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1192368817,540312063&fm=27&gp=0.jpg',
+    ],
   },
 
   /**
