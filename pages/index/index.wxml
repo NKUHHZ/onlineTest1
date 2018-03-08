@@ -1,14 +1,17 @@
 <!--首页-->
+
 <!--滑块-->
 <swiper indicator-dots="true" autoplay="true" duration="100" bindchange="listenSwiper" class="swiper">
 <swiper-item wx:for="{{topStories}}">
 <image mode="scaleToFill" src="{{item}}"class="slide-image"/>
 </swiper-item>
+
 </swiper>
 <view class="themes-box-top">
       <text class="themes-box-title">每日热点</text>
         <text class="themes-box-subtitle">你想要知道的环境热点</text>
   </view>
+
 <!-- 列表 -->
 <scroll-view scroll-y="true" enable-back-to-top="true" scroll-top="5">
 
@@ -25,9 +28,9 @@
                         </view>
                     </navigator>
                 </view>
-
             </view>
 
+</scroll-view>
 
   <view hidden="{{hotshidden}}" class="hot-box-more">
                 <view wx:if="{{hothidden}}">
