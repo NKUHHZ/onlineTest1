@@ -1,16 +1,37 @@
 <!--首页-->
-<!--是否显示圆点，自动播放， 间隔时间， 监听滚动和点击事件-->
-<swiper indicator-dots="true" autoplay="true" duration="100" bindchange="listenSwiper" >
-  <swiper-item wx:for="{{topStories}}">
-      <image mode="scaleToFill" src="{{item}}" class="slide-image" width="355" height="150"/>
-    </swiper-item>
+
+<!--滑块-->
+<swiper indicator-dots="true" autoplay="true" duration="100" bindchange="listenSwiper" class="swiper">
+<swiper-item wx:for="{{topStories}}">
+<image mode="scaleToFill" src="{{item}}"class="slide-image"/>
+</swiper-item>
+
 </swiper>
 <view class="themes-box-top">
       <text class="themes-box-title">每日热点</text>
         <text class="themes-box-subtitle">你想要知道的环境热点</text>
   </view>
-<!-- 日报列表 -->
+
+<!-- 列表 -->
 <scroll-view scroll-y="true" enable-back-to-top="true" scroll-top="5">
+
+   <view class="themes-list">
+
+       <view class="themes-list-box" wx:for="{{dataThemes}}">
+                    <navigator url="../themes/themes?id={{item.id}}">
+                        <view class="themes-list-thumbnail">
+                            <image class="themes-list-img" src="{{item.thumbnail}}" />
+                        </view>
+                        <view class="themes-list-main">
+                            <view class="themes-list-name">{{item.name}}</view>
+                            <view class="themes-list-description">{{item.description}}</view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+
+</scroll-view>
+
   <view hidden="{{hotshidden}}" class="hot-box-more">
                 <view wx:if="{{hothidden}}">
                     <image src="/res/loading.gif" mode="aspectFill"/>

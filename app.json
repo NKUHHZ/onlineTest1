@@ -17,25 +17,28 @@
   "tabBar":
   {
 
-    "color": "black",
-    "selectedColor": "gray",
-    "backgroundColor": "white",
+    "color": "gray",
+    "selectedColor": "white",
+    "backgroundColor": "black",
     "borderStyle": "black",
     "list":[
       {
         "pagePath":"pages/index/index",
-        "iconPath": "res/3.png",
+        "iconPath": "res/png resource/bar_explore_black.png",
+        "selectedIconPath":"res/png resource/bar_explore.png",
 
         "text":"首页"
       },
       {
         "pagePath":"pages/MapPage/MapPage",
-        "iconPath": "res/5.png",
+        "iconPath": "res/png resource/bar_home_black.png",
+        "selectedIconPath":"res/png resource/bar_home.png",
         "text":"上传"
       },
       {
         "pagePath":"pages/More/More",
-        "iconPath": "res/4.png",
+        "iconPath": "res/png resource/bar_mine_black.png",
+        "selectedIconPath": "res/png resource/bar_mine.png",
         "text":"更多"
       }
 
