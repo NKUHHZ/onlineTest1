@@ -35,3 +35,25 @@
   height:100px;
   padding-left: 50px;
 }
+
+.page_bd{
+  padding: 10px;
+  background-color: snow;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+}
+.body_head{
+  border: 1px solid;
+  border-color: beige;
+  padding: 10px;
+}
+.display_show{
+  display: block;
+  border: 1px solid;
+  border-color: beige;
+  padding: 10px;
+}
+.display_none{
+  display: none;
+}

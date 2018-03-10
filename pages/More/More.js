@@ -5,15 +5,61 @@ const app = getApp()
 Page({
   data: {
     userInfo:{},
-    attention:'0',
-    location:'无',
-    record:'0'
-  },
+    userList:{
+      attention: '0',
+      record: '0',
+      },
+    userOperation:[
+      {
+        isunread: false,
+        unreadNum: 2,
+        icon:'../../res/png resource/bar_home_black.png',
+        text:'我的上传记录',
+      },
+      {
+        isunread: false,
+        unreadNum: 2,
+        icon:'../../res/png resource/bar_home_black.png',
+        text:'我的关注',
+
+      },
+      {
+        isunread: false,
+        unreadNum: 2,
+        icon:'../../res/png resource/bar_home_black.png',
+        text:'我关注的用户'
+
+      },
+      {
+        isunread: false,
+        unreadNum: 2,
+        icon:'../../res/png resource/bar_home_black.png',
+        text:'关注我的用户'
+
+      },
+      {
+        isunread: false,
+        unreadNum: 2,
+        icon:'../../res/png resource/bar_home_black.png',
+        text:'关于小程序'
+      }
+    ]
+    },
   toRecord: function () {
     wx.navigateTo({
       url: '/pages/SubmitRecord/SubmitRecord',
     })
   },
+  tap:function(e){
+    console.log(e.currentTarget.dataset.index);
+    if(e.currentTarget.dataset.index==0)
+    {
+      wx.navigateTo({
+        url: '/pages/SubmitRecord/SubmitRecord',
+      })
+    }
+  },
+  
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
