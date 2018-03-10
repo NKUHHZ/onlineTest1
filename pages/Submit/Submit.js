@@ -12,6 +12,7 @@ Page({
     imageUrl2: null,
     imageUrl3: null,
     disabled: true,
+    selected:false,
     poluteType:'请选择污染类型',
     open:false,
     types:["废气排放","乱扔垃圾","污水排放","随意焚烧","其他污染"]
@@ -27,6 +28,7 @@ Page({
     this.setData({
       poluteType:this.data.types[temp],
       open:false,
+      selected:true
     })
   },
   onLoad: function (options) {
@@ -53,7 +55,9 @@ Page({
               console.log(res);
               var add = res.result.address
               that.setData({
-                address: add
+                address: add,
+                latitude:latitude1,
+                longitude:longitude1
               })
             }
           });
@@ -99,6 +103,13 @@ Page({
     }
   },
   upload: function () {
+    if(this.data.disabled || !this.data.selected){
+      wx.showModal({
+        title: 'Error',
+        content: '请完善所有信息',
+      })
+      return;
+    }
     var that = this;
     uploadPicture(that, that.data.pic_list, 0, that.data.latitude, that.data.longitude, that.data.address, that.data.ifAnonymity);
 
