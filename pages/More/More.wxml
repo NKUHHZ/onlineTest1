@@ -2,9 +2,9 @@
 <view>
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{user_icon}}" background-size="cover"></image>
-    <view class="userList">
-    <text class="userinfo-nickname">{{user_name}}</text>
-    <view class="acinfo">
+    <view class="userList" bindtab='tapLogin'>
+    <text class="{{loginStatus?'userinfo-nickname':'userinfo-unlogin'}}">{{user_name}}</text>
+    <view class="arinfo">
     <text class="userList-attention">关注{{userList.attention}}</text>
     <text class="userList-record">记录{{userList.record}}</text>
     </view>
