@@ -59,24 +59,22 @@ function onLoad(that){
               success: function (res) {
                 //将服务器返回的session_key存到本地
                 var session_key = res.data;
-                wx.showToast({
-                  title: '登陆成功',
-                })
-                
                 console.log('登陆成功' + res.data);
                 wx.setStorageSync('session_key', session_key);
               },
               fail: function (res) {
-                //wx.setStorageSync("session_key", bright);
-                console.log(res);
-                console.log('登录失败');
+                wx.showModal({
+                  title: 'Error',
+                  content: '登陆失败，请检查您的网络设置',
+                })
               },
             })
           },
           fail: function () {
             //如果获取登陆权限失败则提示用户请登陆
-            wx.showToast({
-              title: '登陆失败，请授予登录！！',
+            wx.showModal({
+              title: 'Error',
+              content: '请授与登陆权限，登陆后才能使用上传等功能！',
             })
           }
         })
@@ -110,16 +108,18 @@ function onLoad(that){
               wx.setStorageSync('session_key', session_key);
             },
             fail: function (res) {
-              //wx.setStorageSync("session_key", bright);
-              console.log(res);
-              console.log('登录失败');
+              wx.showModal({
+                title: 'Error',
+                content: '登陆失败，请检查您的网络设置',
+              })
             },
           })
         },
         fail: function () {
           //如果获取登陆权限失败则提示用户请登陆
-          wx.showToast({
-            title: '登陆失败，请请授予登录！！',
+          wx.showModal({
+            title: 'Error',
+            content: '请授与登陆权限，登陆后才能使用上传等功能！',
           })
         }
       })

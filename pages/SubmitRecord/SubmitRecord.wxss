@@ -1,8 +1,14 @@
 /* pages/More/More.wxss */
+page{
+  background:whitesmoke;
+}
 .userPic{
   display: flex;
   flex-direction: column;
   padding-bottom: 50rpx;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50rpx;
 }
 .image_frame{
    width: 128rpx;
@@ -21,8 +27,8 @@
 .head{
   display: flex;
   flex-direction:row;
-  padding: 20px;
-  height:15%;
+  color:gray;
+  font-size: 30rpx;
 }
 
 .imgs{
@@ -36,13 +42,16 @@
 .images{
   display: flex;
   flex-direction: row;
-  width:100px;
-  height:100px;
-  padding: 30px;
+  width:200rpx;
+  height:200rpx;
+  padding: 5rpx;
 }
-.tail{
+.text_view{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 20px;
-  height: 60px;
+}
+.listView{
+  border-bottom: solid 2rpx;
+  border-color: whitesmoke;
 }

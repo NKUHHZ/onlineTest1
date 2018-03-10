@@ -8,7 +8,10 @@
 
 <view class="page">
   <view class="page_bd">
-    <view class="body_head" bindtap="showitem">请选择污染类型     </view>
+    <view class="body_head" bindtap="showitem">
+      <text>{{poluteType}}</text>
+      <image src='../../res/arrow-down.png' class="arrow"></image>
+    </view>
     <view  class="{{open?'display_show':'display_none'}}"   wx:for="{{types}}" wx:item="{{item}}" wx:key="{{index}}">
       <view bindtap='selectType' data-index="{{index}}">{{item}}</view>
     </view>
@@ -20,19 +23,11 @@
     <image src="{{imageUrl1}}" class="flex-cell" mode="aspectFit"></image>
     <image src="{{imageUrl2}}" class="flex-cell" mode="aspectFit"></image>
     <image src="{{imageUrl3}}" class="flex-cell" mode="aspectFit"></image>
-    <image src="{{imageUrl4}}" class="flex-cell" mode="aspectFit"></image>
   </view>
-  <view class="flex-row">
-    <image src="{{imageUrl5}}" class="flex-cell"></image>
-    <image src="{{imageUrl6}}" class="flex-cell"></image>
-    <image src="{{imageUrl7}}" class="flex-cell"></image>
-    <image src="{{imageUrl8}}" class="flex-cell"></image>
-  </view>
-
 </view>
   <view><text class='address'>{{address}}</text></view>
   <button class='button1' bindtap='selectImage' >选择图片</button><!--图片选择按钮-->
-  <button class='button1' bindtap='upload' disabled="{{disabled}}">点击上传</button><!--图片上传按钮-->
+  <button class='button1' bindtap='upload' disabled="{{disabled&&(poluteType=='请选择污染类型')}}">点击上传</button><!--图片上传按钮-->
   </view>
   </view>
 
