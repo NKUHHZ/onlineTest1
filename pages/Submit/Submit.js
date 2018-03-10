@@ -11,7 +11,6 @@ Page({
     imageUrl1: null,
     imageUrl2: null,
     imageUrl3: null,
-    imageUrl4: null,
     disabled: true,
     poluteType:'请选择污染类型',
     open:false,
@@ -68,7 +67,8 @@ Page({
   selectImage: function () {
     var that = this;
     wx.chooseImage({
-      count: 8,
+      count: 3,
+      sizeType:'compressed',
       success: function (res) {
         var tempFilePaths = res.tempFilePaths;
         
@@ -76,7 +76,6 @@ Page({
           imageUrl1: tempFilePaths[0],
           imageUrl2: tempFilePaths[1],
           imageUrl3: tempFilePaths[2],
-          imageUrl4: tempFilePaths[3],
           disabled: false,
           pic_list: tempFilePaths
 

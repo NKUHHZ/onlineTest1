@@ -12,7 +12,7 @@
   color: white;
 }
 #panel{
-  height:65vh;
+  margin-top: 250rpx;
   background:#fff;
 }
 
@@ -31,24 +31,25 @@
 
 .flex-cell{
   flex: 1;
-  width:150px;
-  height:100px;
-  padding-left: 50px;
+  width:200rpx;
+  height:200rpx;
+  padding: 5px;
 }
 
 .page_bd{
+  margin-top:30rpx;
   padding: 10px;
-  background-color: whitesmoke;
+  background-color: lightgray;
   overflow: hidden;
   width:60%;
   position: absolute;
   z-index: 1;
 }
 .body_head{
-  border: 1px solid;
-  border-color: white;
-  padding: 10rpx;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .display_show{
   display: block;
@@ -61,4 +62,10 @@
 }
 .display_none{
   display: none;
+}
+
+.arrow{
+  width: 80rpx;
+  height:60rpx;
+  margin-left:80rpx;
 }

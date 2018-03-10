@@ -78,17 +78,14 @@ page{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .my .my-item:last-child .myitem-name{
   border-bottom: none;
 }
 
-#unread{
-  margin-left: 200rpx;
-  border-radius: 50%;
-  background: red;
-  width:60rpx;
+.arrow{
   height:60rpx;
-
+  width:80rpx;
+  margin-left: 200rpx;
 }

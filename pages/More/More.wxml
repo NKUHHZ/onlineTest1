@@ -16,7 +16,7 @@
       
       <view class="myitem-name flex-item" bindtap="tap" data-index="{{index}}">
         <text class="text">{{item.text}}</text>
-        <text id="unread">{{item.unreadNum}}</text>
+        <image src="../../res/arrow-right.png" class = "arrow"></image>
       </view>
     </view>
     </block>
