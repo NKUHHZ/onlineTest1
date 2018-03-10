@@ -9,9 +9,8 @@ Page({
     user_name:'点击登陆',
     loginStatus:false,
     userList:{
-      attention: '0',
-      record: '0',
-      },
+      
+    },
     userOperation:[
       {
         isunread: false,
@@ -50,10 +49,12 @@ Page({
     },
   tap:function(e){
     console.log(e.currentTarget.dataset.index);
-    if(!wx.getStorageSync('session_key')){
+    var loginStatus = app.globalData.loginStatus;
+    if(loginStatus!='success'){
       wx.showModal({
         title: 'Login Error',
         content: '请登陆',
+        showCancel:false,
       })
       return;
     }
@@ -65,7 +66,11 @@ Page({
     }
   },
   tapLogin:function(){
-    if(wx.getStorageSync('session_key')) return;
+    var loginS = app.globalData.loginStatus;
+    if(loginS=='success') {
+      console.log('用户已经登陆点击请求登陆');
+      return;
+    }
     wx.checkSession({
       success: function () {
         //session有效则可以直接和服务器通讯，不需要登陆
@@ -86,16 +91,30 @@ Page({
                   'user_name': that.data.userInfo.nickName,
                   'user_profile': that.data.userInfo.avatarUrl,
                 },
+                header: {
+                  'content-type': 'application/json'
+                },
+                dataType: "json",
                 success: function (res) {
                   //将服务器返回的session_key存到本地
-                  var session_key = res.data;
-                  console.log('登陆成功' + res.data);
-                  wx.setStorageSync('session_key', session_key);
+                  var loginStatus = res.data.loginStatus;
+                  if (loginStatus == 'success') {
+                    var session_key = res.data.user_id;
+                    console.log('登陆成功' + res.data);
+                    wx.setStorageSync('session_key', session_key);
+                    app.globalData.loginStatus = 'success';
+                    this.setData({
+                      loginStatus:true
+                    })
+                  } else {
+                    console.log(loginStatus);
+                  }
                 },
                 fail: function (res) {
                   wx.showModal({
                     title: 'Error',
                     content: '登陆失败，请检查您的网络设置',
+                    showCancel:false,
                   })
                 },
               })
@@ -105,6 +124,7 @@ Page({
               wx.showModal({
                 title: 'Error',
                 content: '请授与登陆权限，登陆后才能使用上传等功能！',
+                showCancel:false,
               })
             }
           })
@@ -131,16 +151,30 @@ Page({
                 'user_name': that.data.userInfo.nickName,
                 'user_profile': that.data.userInfo.avatarUrl,
               },
+              header: {
+                'content-type': 'application/json'
+              },
+              dataType: "json",
               success: function (res) {
-                //将服务器返回的session_key存到本地
-                var session_key = res.data;
-                console.log('登陆成功' + res.data);
-                wx.setStorageSync('session_key', session_key);
+                ///将服务器返回的session_key存到本地
+                var loginStatus = res.data.loginStatus;
+                if (loginStatus == 'success') {
+                  var session_key = res.data.user_id;
+                  console.log('登陆成功' + res.data);
+                  wx.setStorageSync('session_key', session_key);
+                  app.globalData.loginStatus = 'success';
+                  this.setData({
+                    loginStatus: true
+                  })
+                } else {
+                  console.log(loginStatus);
+                }
               },
               fail: function (res) {
                 wx.showModal({
                   title: 'Error',
                   content: '登陆失败，请检查您的网络设置',
+                  showCancel:false,
                 })
               },
             })
@@ -149,7 +183,8 @@ Page({
             //如果获取登陆权限失败则提示用户请登陆
             wx.showModal({
               title: 'Error',
-              content: '请授与登陆权限，登陆后才能使用上传等功能！',
+              content: '请授与登陆权限并且确保网络畅通，登陆后才能使用上传等功能！',
+              showCancel:false,
             })
           }
         })
@@ -157,6 +192,7 @@ Page({
     })
   },
   onLoad: function () {
+    var that = this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -181,10 +217,35 @@ Page({
         }
       })
     }
-    this.setData({
-      user_icon: this.data.userInfo.avatarUrl,
-      user_name: this.data.userInfo.nickName,
-      loginStatus:true,
+    //向服务器请求返回用户的关注数和上传记录数
+    wx.request({
+      url: 'https://brightasdream.cn/uploadImage/handleAlldate',
+      data:{
+        'user_id':wx.getStorageSync('session_key')
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      dataType: "json",
+      success:function(res){
+        console.log(res.data);
+        var temp = res.data;
+        that.setData({
+          userList:temp[0],//得到返回的自己的信息,返回的是json数组
+        })
+        this.setData({
+          user_icon: this.data.userInfo.avatarUrl,
+          user_name: this.data.userInfo.nickName,
+          loginStatus: true,
+        });
+      },
+      fail:function(res){
+        wx.showModal({
+          title: 'Error',
+          content: '请求服务器失败，请检查您的网络设置',
+          showCancel:false,
+        })
+      }
     })
   }
 })

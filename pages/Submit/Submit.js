@@ -107,6 +107,7 @@ Page({
       wx.showModal({
         title: 'Error',
         content: '请完善所有信息',
+        showCancel:false,
       })
       return;
     }

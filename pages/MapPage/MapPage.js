@@ -1,4 +1,5 @@
 //var Map = wx.createMapContext(map)
+const app = getApp();
 Page({
   data: {
     markers: [{
@@ -25,6 +26,15 @@ Page({
   },
 
   toSubmit: function () {
+    var loginStatus = app.globalData.loginStatus;
+    if(loginStatus!='success'){
+      wx.showModal({
+        title: 'Error',
+        content: '登陆后方可上传',
+        showCancel:false
+      })
+      return;
+    }
     wx.navigateTo({
       url: '/pages/Submit/Submit',
     })
