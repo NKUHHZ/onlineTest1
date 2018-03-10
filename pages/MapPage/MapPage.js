@@ -55,5 +55,16 @@ Page({
         // complete
       }
     })
+  },
+  onLoad:function(){
+    var that = this;
+    wx.getLocation({//获取当前位置的坐标
+      success: function (res) {
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+      },
+    })
   }
 })

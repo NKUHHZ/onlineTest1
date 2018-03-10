@@ -8,7 +8,7 @@
 
 <view class="page">
   <view class="page_bd">
-    <view class="body_head" bindtap="showitem">请选择污染类型     </view>
+    <view class="body_head" bindtap="showitem">{{poluteType}}     </view>
     <view  class="{{open?'display_show':'display_none'}}"   wx:for="{{types}}" wx:item="{{item}}" wx:key="{{index}}">
       <view bindtap='selectType' data-index="{{index}}">{{item}}</view>
     </view>

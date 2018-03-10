@@ -1,11 +1,13 @@
 <!--index.wxml-->
-<view class="container">
+<view>
   <view class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <image class="userinfo-avatar" src="{{user_icon}}" background-size="cover"></image>
     <view class="userList">
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="userinfo-nickname">{{user_name}}</text>
+    <view class="acinfo">
     <text class="userList-attention">关注{{userList.attention}}</text>
     <text class="userList-record">记录{{userList.record}}</text>
+    </view>
     </view>
   </view>
  <view class="my">
@@ -14,6 +16,7 @@
       
       <view class="myitem-name flex-item" bindtap="tap" data-index="{{index}}">
         <text class="text">{{item.text}}</text>
+        <text id="unread">{{item.unreadNum}}</text>
       </view>
     </view>
     </block>

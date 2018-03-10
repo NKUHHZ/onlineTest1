@@ -38,21 +38,26 @@
 
 .page_bd{
   padding: 10px;
-  background-color: snow;
+  background-color: whitesmoke;
   overflow: hidden;
-  position: fixed;
+  width:60%;
+  position: absolute;
   z-index: 1;
 }
 .body_head{
   border: 1px solid;
-  border-color: beige;
-  padding: 10px;
+  border-color: white;
+  padding: 10rpx;
+  text-align: center;
 }
 .display_show{
   display: block;
   border: 1px solid;
-  border-color: beige;
-  padding: 10px;
+  border-color: white;
+  background-color: white;
+  padding: 10rpx;
+  margin-top: 10rpx;
+  text-align: center;
 }
 .display_none{
   display: none;

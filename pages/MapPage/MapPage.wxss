@@ -1,8 +1,11 @@
+page{
+  background: whitesmoke;
+}
 .submitView{
-  padding-top: 80rpx;
-  
+  padding-bottom: 80rpx;
+  padding-top:50rpx;
 }
 .button1{
-  background-color: #99CCFF;
-   color: white;
+  background-color: white;
+   color: black;
 }

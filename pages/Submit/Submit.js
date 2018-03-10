@@ -15,7 +15,7 @@ Page({
     disabled: true,
     poluteType:'请选择污染类型',
     open:false,
-    types:["废气排放","乱扔垃圾","污水排放","随意焚烧","其他"]
+    types:["废气排放","乱扔垃圾","污水排放","随意焚烧","其他污染"]
   },
   showitem:function(){
       this.setData({
@@ -23,7 +23,12 @@ Page({
       })
   },
   selectType:function(e){
-    console.log(e.currentTarget.dataset.index);
+    var temp = e.currentTarget.dataset.index
+    console.log(temp);
+    this.setData({
+      poluteType:this.data.types[temp],
+      open:false,
+    })
   },
   onLoad: function (options) {
     // Do some initialize when page load.
@@ -35,12 +40,25 @@ Page({
       enableDebug: true,
     }),
       wx.getLocation({
+        type: 'wgs84',
         success: function (res) {
-          that.setData({
-            latitude: res.latitude,
-            longitude: res.longitude
-          })
-        },
+          console.log(res)
+          var latitude1 = res.latitude
+          var longitude1 = res.longitude
+          qqmapsdk.reverseGeocoder({
+            location: {
+              latitude: latitude1,
+              longitude: longitude1
+            },
+            success: function (res) {
+              console.log(res);
+              var add = res.result.address
+              that.setData({
+                address: add
+              })
+            }
+          });
+        }
       })
   },
   onReady: function () {
@@ -53,27 +71,7 @@ Page({
       count: 8,
       success: function (res) {
         var tempFilePaths = res.tempFilePaths;
-        wx.getLocation({
-          type: 'wgs84',
-          success: function (res) {
-            console.log(res)
-            var latitude1 = res.latitude
-            var longitude1 = res.longitude
-            qqmapsdk.reverseGeocoder({
-              location: {
-                latitude: latitude1,
-                longitude: longitude1
-              },
-              success: function (res) {
-                console.log(res);
-                var add = res.result.address
-                that.setData({
-                  address: add
-                })
-              }
-            });
-          }
-        })
+        
         that.setData({
           imageUrl1: tempFilePaths[0],
           imageUrl2: tempFilePaths[1],
