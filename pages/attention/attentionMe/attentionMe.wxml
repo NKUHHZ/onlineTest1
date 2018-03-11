@@ -6,8 +6,8 @@
   <scroll-view class='attentionList'>
     <view wx:for="{{attentionList}}">
       <view class="attentionUser">
-        <image class="userIcon"></image>
-        <text class="userName"></text>
+        <image class="userIcon" src="{{attentionUser.head_portrait}}"></image>
+        <text class="userName">{{attention}}</text>
       </view>
     </view>
   </scroll-view>

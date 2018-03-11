@@ -4,12 +4,67 @@ const app = getApp()
 
 Page({
   data: {
+    hidden:true,
+    uploadTimes:1,
     userInfo: {},
     attention: '0',
     location: '无',
     record: '0',
     list:[],//用来存从服务器获取的信息，包括图片名称数组等等
     paths:[]
+  },
+  LM:function(){
+    var that = this;
+    that.setData({
+      hiden: true
+    })
+    if (that.data.uploadTimes >= 100000) {
+      that.setData({
+        hiden: false
+      });
+    }
+    else {
+      wx.request({
+        url: 'https://brightasdream.cn/uploadImage/handleLookSelf',
+        data: {
+          'user_id': wx.getStorageSync('session_key'),
+          'page': that.data.uploadTimes,
+        },
+
+        success: function (res) {
+          console.log(res.data);
+          if (!res.data[0]) {
+            that.setData({
+              hiden: false
+            });
+            return;
+          }
+          that.setData({
+            list:that.data.list.concat(res.data),
+          })
+          var l = res.data;
+          var p = new Array(l.length);
+          for (var j = 0; j < l.length; j++) {
+            var t = l[j].image_path.split("&");//取出图片名
+            t.pop();//删除最后一个空白元素
+            p[j] = new Array(t.length);
+            p[j] = t;
+            for (var i = 0; i < t.length; i++) {
+              p[j][i] = 'https://brightasdream.cn/uploadImage/upload/' + wx.getStorageSync("session_key") + '/' + l[j].uploadId + '/' + p[j][i];//得到服务器上的图片的路劲
+            }
+            that.setData(
+              {
+                paths: that.data.paths.concat(p),
+              }
+            )
+            console.log(that.data.paths);
+          }
+        }
+      })
+      that.setData({
+        uploadTimes: that.data.uploadTimes + 1
+      })
+    }
   },
   onLoad: function () {
     var that = this;
@@ -38,6 +93,9 @@ Page({
         }
       })
     }
+    that.setData({
+      uploadTimes: that.data.uploadTimes + 1
+    });
   },
   preImage:function(res){
     var src = res.currentTarget.dataset.src;//获取data-src
@@ -53,7 +111,8 @@ function queryRequest(that) {
   wx.request({
     url: 'https://brightasdream.cn/uploadImage/handleLookSelf',
     data: {
-      'user_id':wx.getStorageSync('session_key')
+      'user_id':wx.getStorageSync('session_key'),
+      'page':'1'
     },
     header: {
       'content-type': 'application/json'
@@ -77,7 +136,6 @@ function queryRequest(that) {
         list: l,
         paths:p
       })
-      
       console.log(that.data.paths);
     }
   })

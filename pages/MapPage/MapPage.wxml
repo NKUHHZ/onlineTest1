@@ -6,5 +6,5 @@
   </view>
 </view>
 
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 850rpx;" bindtap='chooseLocation'></map>
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}"  bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 850rpx;" bindtap='chooseLocation'></map>
 

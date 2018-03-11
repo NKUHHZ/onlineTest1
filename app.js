@@ -49,6 +49,7 @@ function onLoad(that){
         //user_id没有缓存走登陆流程获取
         wx.showLoading({
           title: '正在登陆....',
+          mask:true,
         })
         wx.login({
           success: function (res) {
@@ -111,6 +112,7 @@ function onLoad(that){
       // session失效则需要登陆登录
       wx.showLoading({
         title: '正在登陆...',
+        mask:true,
       })
       wx.login({
         success: function (res) {

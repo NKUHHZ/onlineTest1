@@ -4,7 +4,8 @@
  <text>{{userInfo.nickName}}</text>
   <image class="image_frame" src="{{userInfo.avatarUrl}}" mode="aspectFill">  </image>  <!--imageUr是加载图片的地址-->
   </view>
- <scroll-view class='scrollView' style='background:white'>
+ <scroll-view class='scrollView' style='background:white'
+ scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" >
    <view wx:for="{{list}}" wx:key="item" wx:for-index="i" class='listView'>
    <view class="head" >
       <text style='margin-right:60rpx;margin-left:30rpx;'>关注{{item.attention_number}}</text>
@@ -21,6 +22,13 @@
         <text style='font-size:35rpx;margin-top:20rpx;'>{{item.upload_location}}</text>
       </view>
     </view>
+</view>
+<view>
+  <view wx:if="{{hiden}}" class="textNothing">
+    <image   src="../../res/loading.gif"class="moreImage"></image>
+  </view>
+  <view wx:else class="textNothing"><text>没有更多     </text>
+  </view>
 </view>
 </scroll-view>
 </view>
