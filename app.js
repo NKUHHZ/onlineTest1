@@ -47,6 +47,9 @@ function onLoad(that){
       var user_id = 'no';
       if(user_id=='no'){
         //user_id没有缓存走登陆流程获取
+        wx.showLoading({
+          title: '正在登陆....',
+        })
         wx.login({
           success: function (res) {
             // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -84,6 +87,9 @@ function onLoad(that){
                   showCancel:false,
                 })
               },
+              complete:function(res){
+                wx.hideLoading();
+              }
             })
           },
           fail: function () {
@@ -103,6 +109,9 @@ function onLoad(that){
     },
     fail: function () {
       // session失效则需要登陆登录
+      wx.showLoading({
+        title: '正在登陆...',
+      })
       wx.login({
         success: function (res) {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -141,6 +150,9 @@ function onLoad(that){
                 showCancel:false,
               })
             },
+            complete:function(res){
+              wx.hideLoading();
+            }
           })
         },
         fail: function () {

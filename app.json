@@ -6,7 +6,10 @@
     "pages/Imformation/Imformation",
     "pages/More/More",
     "pages/MapPage/MapPage",
-    "pages/SubmitRecord/SubmitRecord"
+    "pages/SubmitRecord/SubmitRecord",
+    "pages/attention/attentionMe/attentionMe",
+    "pages/attention/myAttentionSubmit/myAttentionSubmit",
+    "pages/attention/myAttentionUser/myAttentionUser"
   ],
   "window":{
     "backgroundTextStyle":"dark",

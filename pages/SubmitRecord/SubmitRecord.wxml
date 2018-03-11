@@ -12,7 +12,7 @@
    </view>
     <view class="right" style='background:white;'>
       <block wx:for="{{paths[i]}}" wx:key="item" class='imgs'>
-        <image src="{{item}}" class='images'></image>
+        <image bindtap='preImage' data-list="{{paths[i]}}" data-src="{{item}}" src="{{item}}" class='images'></image>
       </block>
     </view>
     <view class='tail'>

@@ -39,8 +39,15 @@ Page({
       })
     }
   },
- 
-  
+  preImage:function(res){
+    var src = res.currentTarget.dataset.src;//获取data-src
+    var imgList = res.currentTarget.dataset.list;//获取data-list
+ //图片预览
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: imgList // 需要预览的图片http链接列表
+    })
+  }
 })
 function queryRequest(that) {
   wx.request({
@@ -66,12 +73,6 @@ function queryRequest(that) {
           p[j][i] = 'https://brightasdream.cn/uploadImage/upload/' + wx.getStorageSync('session_key') + '/' + l[j].uploadId + '/' + p[j][i];//得到服务器上的图片的路劲
         }
       }
-      //for (var i = 0; i < list.length; i++) {
-        //var a = timeString(list[i].display_time);
-        //list[i].time = a;
-        //list[i].name = list[i].user.name;
-        //list[i].pic = list[i].user.avatar;
-      //}
       that.setData({   //这里调用setData时不能用this.setData，会报错  
         list: l,
         paths:p

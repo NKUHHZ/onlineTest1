@@ -1,0 +1,14 @@
+<!--pages/attention/attentionMe/attentionMe.wxml-->
+<view>
+  <view class='mydetials'>
+    <text>关注我的用户</text>
+  </view>
+  <scroll-view class='attentionList'>
+    <view wx:for="{{attentionList}}">
+      <view class="attentionUser">
+        <image class="userIcon"></image>
+        <text class="userName"></text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

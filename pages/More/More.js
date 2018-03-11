@@ -107,6 +107,9 @@ function updateUserStatus(that){
     })
   }
   //向服务器请求返回用户的关注数和上传记录数
+  wx.showLoading({
+    title: '正在登陆....',
+  })
   wx.request({
     url: 'https://brightasdream.cn/uploadImage/handleAlldate',
     data: {
@@ -119,6 +122,10 @@ function updateUserStatus(that){
     success: function (res) {
       console.log(res.data);
       var temp = res.data;
+      if(!temp[0]){
+        console.log("返回用户信息为空");
+        return;
+      }
       that.setData({
         userList: temp[0],//得到返回的自己的信息,返回的是json数组
       })
@@ -134,12 +141,18 @@ function updateUserStatus(that){
         content: '请求服务器失败，请检查您的网络设置',
         showCancel: false,
       })
+    },
+    complete:function(res){
+      wx.hideLoading();
     }
   })
 }
 
 function tryLogin(that){
   //请求登陆
+  wx.showLoading({
+    title: '正在登陆.....',
+  })
   wx.checkSession({
     success: function () {
       //session有效则可以直接和服务器通讯，不需要登陆
@@ -268,6 +281,7 @@ function tryLogin(that){
       })
     }
   })
+  wx.hideLoading();
   //更新用户信息
   updateUserStatus(that);
 }
