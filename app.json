@@ -9,7 +9,8 @@
     "pages/SubmitRecord/SubmitRecord",
     "pages/attention/attentionMe/attentionMe",
     "pages/attention/myAttentionSubmit/myAttentionSubmit",
-    "pages/attention/myAttentionUser/myAttentionUser"
+    "pages/attention/myAttentionUser/myAttentionUser",
+    "pages/Activity/Activity"
   ],
   "window":{
     "backgroundTextStyle":"dark",

@@ -1,0 +1,65 @@
+page{
+  background-color:whitesmoke;
+}
+.userPic{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50rpx;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50rpx;
+  background-color:white;
+}
+.userinfo_text{
+  font-size:35rpx;
+  font-weight:200;
+  color:gray;
+}
+.image_frame{
+   width: 128rpx;
+  height: 128rpx;
+  margin: 40rpx;
+  border-radius: 50%;
+}
+.Image{
+  background-color:white;
+  flex-direction: row;
+  display:flex;
+}
+.storyImage{
+  margin:10px;
+  max-width:100px;
+  max-height:62px;
+}
+.list{
+  background-color:white;
+  display:flex-row;
+}
+.text_type
+{
+  font-weight:400;
+  margin:30rpx;
+  font-size:30rpx;
+  color:#666;
+}
+.text_type
+{
+  font-weight:400;
+  margin:30rpx;
+  font-size:30rpx;
+  color:#666;
+}
+.text_attention
+{
+  font-weight:400;
+  margin:30rpx;
+  font-size:30rpx;
+  color:#666;
+}
+.text_uploadTime
+{
+  font-weight:400;
+  margin:30rpx;
+  font-size:30rpx;
+  color:#666;
+}
