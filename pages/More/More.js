@@ -109,6 +109,7 @@ function updateUserStatus(that){
   //向服务器请求返回用户的关注数和上传记录数
   wx.showLoading({
     title: '正在登陆....',
+    mask:true,
   })
   wx.request({
     url: 'https://brightasdream.cn/uploadImage/handleAlldate',
@@ -152,6 +153,7 @@ function tryLogin(that){
   //请求登陆
   wx.showLoading({
     title: '正在登陆.....',
+    mask:true,
   })
   wx.checkSession({
     success: function () {

@@ -21,9 +21,21 @@ page{
   flex-direction: row;
 }
 .scrollView{
-  padding-top: 100rpx
+  padding-top: 100rpx;
+  height:900rpx;
 }
-
+.moreImage{
+  width:80px;
+  height:16px;
+  flex-direction: row;
+  align-items:center;
+}
+.textNothing{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+}
 .head{
   display: flex;
   flex-direction:row;
@@ -52,6 +64,6 @@ page{
   padding: 20px;
 }
 .listView{
-  border-bottom: solid 2rpx;
+  border-bottom: solid 6rpx;
   border-color: whitesmoke;
 }

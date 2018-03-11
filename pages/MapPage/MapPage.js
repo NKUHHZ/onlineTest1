@@ -1,30 +1,63 @@
-//var Map = wx.createMapContext(map)
+
 const app = getApp();
 Page({
   data: {
-    markers: [{
-      iconPath: "/resources/others.png",//标识图片
-      id: 0,
-      latitude: 39.90, longitude: 116.38,
-      width: 50,
-      height: 50
-    }],
+    markers: [],
     controls: [{
       id: 1,
-      iconPath: '/resources/location.png',
+      iconPath: '../../res/wz.png',
       position: {
-        left: 0,
-        top: 300 - 50,
-        width: 50,
-        height: 50
+        left: 20,
+        top: 350,
+        width: 30,
+        height: 30
       },
       clickable: true
     }],
-    circles: [],
     longitude: 113.324520,//广州坐标
     latitude: 23.099994,
   },
+  onReady: function (e) {
+    // 使用 wx.createMapContext 获取 map 上下文
+    this.mapCtx = wx.createMapContext('map')
+  },
+  controltap(e) {
+    var that = this;
+    console.log("press locaiton button" + e.controlId)
+    wx.getLocation({//获取当前位置的坐标
+      success: function (res) {
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: 'Error',
+          content: '获取位置失败，请开启定位并授予权限',
+          showCancel: false,
+        })
+      }
+    })
+  },
+  regionchange(e) {
+    if (e.type == "begin") {
 
+    } else if (e.type == "end") {
+
+
+      this.mapCtx.getCenterLocation({
+        success: function (res) {
+          console.log(res.longitude);
+          console.log(res.latitude);
+          updateMarkers(this,res);
+        }
+      });
+    }
+  },
+  markertap(e) {
+    console.log(e.markerId)
+  },
   toSubmit: function () {
     var loginStatus = app.globalData.loginStatus;
     if(loginStatus!='success'){
@@ -49,13 +82,6 @@ Page({
         that.setData({
           longitude: res.longitude,
           latitude: res.latitude,
-          circles: [{
-            latitude: 39.90, longitude: 116.38,//天安门坐标
-            color: '#FF0000DD',
-            fillColor: '#7cb5ec88',
-            radius: 3000,
-            strokeWidth: 1
-          }]
         })
       },
       fail: function () {
@@ -66,6 +92,7 @@ Page({
       }
     })
   },
+  
   onLoad:function(){
     var that = this;
     wx.getLocation({//获取当前位置的坐标
@@ -83,5 +110,93 @@ Page({
         })
       }
     })
+    querySurroundingUpdate(that);
   }
 })
+
+function querySurroundingUpdate(that){
+  //查询所有已经上传的点的坐标
+  wx.request({
+    url: 'https://brightasdream.cn/uploadImage/handlelooksurrounding',
+    data: {
+      'longitude': that.data.longitude,
+      'latitude': that.data.latitude,
+      'radius': 100,
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    dataType: "json",
+    success: function (res) {
+      console.log(res.data);
+      var temp = res.data;
+      for (var i = 0; i < temp.length; i++) {
+        var tt = {
+          iconPath: "../../res/marker_yellow.png",
+          id: i,
+          latitude: '',
+          longitude: '',
+          width: 30,
+          height: 30
+        }
+        tt.longitude = temp[i].upload_longitude;
+        tt.latitude = temp[i].upload_latitude;
+        that.setData({
+          markers: that.data.markers.concat(tt),
+        })
+
+      }
+      console.log(that.data.markers);
+    },
+    fail: function (res) {
+      wx.showModal({
+        title: 'Error',
+        content: '获取信息失败，请开启定位并授予权限',
+        showCancel: false,
+      })
+    }
+  })
+}
+
+function updateMarkers(that,res){
+  //查询所有已经上传的点的坐标
+  wx.request({
+    url: 'https://brightasdream.cn/uploadImage/handlelooksurrounding',
+    data: {
+      'longitude': res.longitude,
+      'latitude': res.latitude,
+      'radius': 1,
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    dataType: "json",
+    success: function (res) {
+      console.log(res.data);
+      var temp = res.data;
+      for (var i = 0; i < temp.length; i++) {
+        var tt = {
+          iconPath: "../../res/marker_yellow.png",
+          id: i,
+          latitude: '',
+          longitude: '',
+          width: 50,
+          height: 50
+        }
+        tt.longitude = temp[i].upload_longitude;
+        tt.latitude = temp[i].upload_latitude;
+        that.setData({
+          markers: that.data.markers.concat(tt),
+        })
+
+      }
+    },
+    fail: function (res) {
+      wx.showModal({
+        title: 'Error',
+        content: '获取信息失败，请开启定位并授予权限',
+        showCancel: false,
+      })
+    }
+  })
+}
