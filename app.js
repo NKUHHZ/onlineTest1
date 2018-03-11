@@ -8,6 +8,7 @@ App({
   globalData: {
     userInfo: null,
     loginStatus: 'fail',
+    storyListG:{}
   },
   onLaunch: function () {
     wx.getSetting({

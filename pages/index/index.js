@@ -1,3 +1,5 @@
+const app=getApp();
+
 Page({
   data: {
     Icon:[],
@@ -131,5 +133,18 @@ that.setData({
   loadMore: function(e){
     var that=this;
     
+  },
+  tap:function(e){
+    var that=this;
+    var dataI=e.currentTarget.dataset.index;
+    var dataStory=e.currentTarget.dataset.story;
+    app.globalData.storyListG=dataStory;
+    console.log(dataI);
+    console.log("$$")
+    console.log(dataStory.uploadId)
+    
+    wx.navigateTo({
+      url: '../Activity/Activity?number='+dataI
+    })
   }
 })
