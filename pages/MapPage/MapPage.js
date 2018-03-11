@@ -75,6 +75,12 @@ Page({
           longitude: res.longitude
         })
       },
+      fail:function(res){
+        wx.showModal({
+          title: 'Error',
+          content: '获取位置失败，请开启定位并授予权限',
+        })
+      }
     })
   }
 })

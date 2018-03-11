@@ -29,6 +29,10 @@ App({
               }
             }
           })
+        } else {
+          wx.authorize({
+            scope: 'scope.userInfo',
+          })
         }
       }
     })

@@ -4,7 +4,7 @@
     <image class="userinfo-avatar" src="{{user_icon}}" background-size="cover"></image>
     <view class="userList">
     <text class="{{loginStatus?'userinfo-nickname':'userinfo-unlogin'}}">{{user_name}}</text>
-    <view class="arinfo">
+    <view class="{{loginStatus?'show':'hide'}}">
     <text class="userList-attention">关注我 {{userList.totalAttentionSelf}}</text>
     <text class="userList-record">上传数 {{userList.totalUpdate}}</text>
     </view>
