@@ -1,4 +1,7 @@
 /**index.wxss**/
+page{
+  background-color:whitesmoke;
+}
 .swiper{
   height: 300rpx;
   width: 100%
@@ -10,9 +13,29 @@
 
 
 .themes-box-top{ text-align: center; padding-bottom: 16px; padding-top: 16px; background: #F9F9F9; }
-.themes-box-title{ font-size: 16px; font-weight: 500; display: block; }
+.themes-box-title{ font-size: 20px; font-weight: 500; display: block;color:gray; }
 .themes-box-subtitle{ font-size: 12px; color: #666; display: block; margin-top: 4px; }
 
 
 .hot-box-more{ text-align: center; font-size: 30rpx; color: #999; margin-bottom: 30px; }
+
 .hot-box-more image{ width: 80px; height: 16px; display: block; margin: 0 auto;}
+.textNothing{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+}
+.moreImage{
+  width:80px;
+  height:16px;
+  flex-direction: row;
+  align-items:center;
+}
+.listImage{
+  width:50px;
+  height:50px;
+}
+.IconAddr{
+  font-size:8px;
+}

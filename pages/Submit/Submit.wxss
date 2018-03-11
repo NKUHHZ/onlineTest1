@@ -1,4 +1,7 @@
 /* pages/Submit/Submit.wxss */
+page{
+  background-color:whitesmoke;
+}
 .itemView{
   padding-top: 50rpx;
 }

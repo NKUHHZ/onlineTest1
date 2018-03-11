@@ -17,6 +17,10 @@ page{
   border:solid 2px gray;
 }
 .button1-image{
-  width:120rpx;
+  width:100rpx;
   height:80rpx;
+}
+.text{
+  font-size:34rpx;
+  color:gray;
 }
