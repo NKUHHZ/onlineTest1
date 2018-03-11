@@ -71,9 +71,14 @@ Page(
         }
       })
     },
-
-      
-      
-      
+    preview :function(res)
+    {
+      var current = res.currentTarget.dataset.src;
+      wx.previewImage({
+        current: current, // 当前显示图片的http链接  
+        urls: this.data.Icon // 需要预览的图片http链接列表  
     }
+    )}
+
+  }
 )

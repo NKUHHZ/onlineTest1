@@ -3,14 +3,14 @@
  <view class='userPic'> 
  
   <image class="image_frame" src="{{item.head_portrait}}" 
-  mode="aspectFill">  </image>  <!--imageUr是加载图片的地址-->
+  mode="aspectFill" >  </image>  <!--imageUr是加载图片的地址-->
   <text class="userinfo_text">{{item.user_name}}</text>
 </view>
 </view>
 <view>
 <view class="Image">
     <view  wx:for="{{Icon}}">
-      <image src="{{item}}"class="storyImage"></image>
+      <image src="{{item}}"class="storyImage"bindtap="preview" data-src="{{item}}" ></image>
     </view>
 </view>
   <view class="list">
