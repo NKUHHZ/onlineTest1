@@ -27,7 +27,7 @@
 </view>
   <view><text class='address'>{{address}}</text></view>
   <button class='button1' bindtap='selectImage' >选择图片</button><!--图片选择按钮-->
-  <button class='button1' bindtap='upload' disabled="{{disabled&&(poluteType=='请选择污染类型')}}">点击上传</button><!--图片上传按钮-->
+  <button class='button1' bindtap='upload' disabled="{{disabled}}">点击上传</button><!--图片上传按钮-->
   </view>
   </view>
 

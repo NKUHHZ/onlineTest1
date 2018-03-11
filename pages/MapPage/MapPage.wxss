@@ -14,6 +14,7 @@ page{
   margin-left: 10rpx;
   margin-right: 10rpx;
   align-items: center;
+  border:solid 2px gray;
 }
 .button1-image{
   width:100rpx;

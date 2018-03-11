@@ -5,6 +5,10 @@ App({
   data:{
     userInfo:{}
   },
+  globalData: {
+    userInfo: null,
+    loginStatus: 'fail',
+  },
   onLaunch: function () {
     wx.getSetting({
       success: res => {
@@ -25,12 +29,13 @@ App({
               }
             }
           })
+        } else {
+          wx.authorize({
+            scope: 'scope.userInfo',
+          })
         }
       }
     })
-  },
-  globalData: {
-    userInfo: null
   }
 })
 
@@ -56,16 +61,27 @@ function onLoad(that){
                 'user_name': that.data.userInfo.nickName,
                 'user_profile': that.data.userInfo.avatarUrl,
               },
+              header: {
+                'content-type': 'application/json'
+              },
+              dataType: "json",
               success: function (res) {
                 //将服务器返回的session_key存到本地
-                var session_key = res.data;
-                console.log('登陆成功' + res.data);
-                wx.setStorageSync('session_key', session_key);
+                var loginStatus = res.data.loginStatus;
+                if (loginStatus == 'success') {
+                  var session_key = res.data.user_id;
+                  console.log('登陆成功' + loginStatus);
+                  wx.setStorageSync('session_key', session_key);
+                  that.globalData.loginStatus='success';
+                } else {
+                  console.log(loginStatus);
+                }
               },
               fail: function (res) {
                 wx.showModal({
                   title: 'Error',
                   content: '登陆失败，请检查您的网络设置',
+                  showCancel:false,
                 })
               },
             })
@@ -75,6 +91,7 @@ function onLoad(that){
             wx.showModal({
               title: 'Error',
               content: '请授与登陆权限，登陆后才能使用上传等功能！',
+              showCancel:false,
             })
           }
         })
@@ -101,16 +118,27 @@ function onLoad(that){
               'user_name': that.data.userInfo.nickName,
               'user_profile': that.data.userInfo.avatarUrl,
             },
+            header: {
+              'content-type': 'application/json'
+            },
+            dataType: "json",
             success: function (res) {
               //将服务器返回的session_key存到本地
-              var session_key = res.data;
-              console.log('登陆成功' + res.data);
-              wx.setStorageSync('session_key', session_key);
+              var loginStatus = res.data.loginStatus;
+              if(loginStatus=='success'){
+                var session_key = res.data.user_id;
+                console.log('登陆成功' + res.data);
+                wx.setStorageSync('session_key', session_key);
+                that.globalData.loginStatus = 'success';
+              }else{
+                console.log(loginStatus);
+              }
             },
             fail: function (res) {
               wx.showModal({
                 title: 'Error',
                 content: '登陆失败，请检查您的网络设置',
+                showCancel:false,
               })
             },
           })
@@ -120,6 +148,7 @@ function onLoad(that){
           wx.showModal({
             title: 'Error',
             content: '请授与登陆权限，登陆后才能使用上传等功能！',
+            showCancel:false,
           })
         }
       })

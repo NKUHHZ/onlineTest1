@@ -1,4 +1,5 @@
 //var Map = wx.createMapContext(map)
+const app = getApp();
 Page({
   data: {
     markers: [{
@@ -25,6 +26,15 @@ Page({
   },
 
   toSubmit: function () {
+    var loginStatus = app.globalData.loginStatus;
+    if(loginStatus!='success'){
+      wx.showModal({
+        title: 'Error',
+        content: '登陆后方可上传',
+        showCancel:false
+      })
+      return;
+    }
     wx.navigateTo({
       url: '/pages/Submit/Submit',
     })
@@ -65,6 +75,12 @@ Page({
           longitude: res.longitude
         })
       },
+      fail:function(res){
+        wx.showModal({
+          title: 'Error',
+          content: '获取位置失败，请开启定位并授予权限',
+        })
+      }
     })
   }
 })
