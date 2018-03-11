@@ -14,13 +14,13 @@
 <!-->
 <!-- 列表 -->
 <scroll-view scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" style="height:700rpx">
-<view wx:for="{{storyList}}" wx:for-index="{{i}}">
-<image scr="{{Icon[0][0]}}"class="listImage"></image>
-<view class="IconAddr">{{Icon[0][0]}}</view>
+<view wx:for="{{storyList}}" wx:for-index="i"class="storyList">
+<image src="{{Icon[i]}}"class="listImage"></image>
 <view class="listWord">
-<view>{{item.upload_time}}</view>
-<view>{{item.attention_number}}</view>
-<view>{{item.type}}</view>
+<view><text class="uploadAttention">关注：{{item.attention_number}}</text>
+<text class="type">污染类型：{{item.type}}</text>
+<text class="look-number">浏览量:{{item.look_number}}</text></view>
+<view><text class="uploadTime">上传时间：{{item.upload_time}}</text></view>
 </view>
 </view>
 <view>

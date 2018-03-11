@@ -1,7 +1,7 @@
 Page({
   data: {
     Icon:[],
-    uploadTimes:0,
+    uploadTimes:1,
     hiden:true,
     topStories: [
       'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=684276477,2474013616&fm=27&gp=0.jpg',
@@ -29,7 +29,7 @@ Page({
     } 
     else{
       console.log('$$$$$$$$$$$$$$$$$4')
-      wx.request({url: 'https://brightasdream.cn/uploadImage/handlepage',
+      wx.request({url: 'https://brightasdream.cn/uploadImage/handlelatestdynamic',
         data:{
         'page': that.data.uploadTimes,
       },
@@ -37,8 +37,9 @@ Page({
   success: function (res) {
     console.log(res.data);
     that.setData({
-      storyList: res.data,
+      storyList: that.data.storyList.concat(res.data),
     });
+    console.log(that.data.storyList);
     var l = res.data;
     var p = new Array(l.length);
     for (var j = 0; j < l.length; j++) {
@@ -52,9 +53,11 @@ Page({
       }
       that.setData(
         {
-          Icon: p,
+          Icon: that.data.Icon.concat(p[j][0]),
         }
       )
+      console.log("0,0")
+      console.log(that.data.Icon)
     }
   }
 })
@@ -78,9 +81,9 @@ that.setData({
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
     wx.request({
-      url: 'https://brightasdream.cn/uploadImage/handlepage',
+      url: 'https://brightasdream.cn/uploadImage/handlelatestdynamic',
       data:{
-        page:'1',
+        'page':that.data.uploadTimes,
       },
 
       success:function(res){
@@ -101,13 +104,11 @@ that.setData({
           }
           that.setData(
             {
-              Icon: p,
+              Icon: that.data.Icon.concat(p[j][0]),
             }
 
     
           )
-          console.log('**')
-          console.log(that.data.Icon)
         }
       }
     })
