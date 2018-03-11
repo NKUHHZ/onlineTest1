@@ -11,35 +11,21 @@
       <text class="themes-box-title">每日热点</text>
         <text class="themes-box-subtitle">你想要知道的环境热点</text>
   </view>
-
+<!-->
 <!-- 列表 -->
-<scroll-view scroll-y="true" enable-back-to-top="true" scroll-top="5">
-
-   <view class="themes-list">
-
-       <view class="themes-list-box" wx:for="{{dataThemes}}">
-                    <navigator url="../themes/themes?id={{item.id}}">
-                        <view class="themes-list-thumbnail">
-                            <image class="themes-list-img" src="{{item.thumbnail}}" />
-                        </view>
-                        <view class="themes-list-main">
-                            <view class="themes-list-name">{{item.name}}</view>
-                            <view class="themes-list-description">{{item.description}}</view>
-                        </view>
-                    </navigator>
-                </view>
-            </view>
-
+<scroll-view scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" style="height:700rpx">
+<view wx:for="{{storyList}}" wx:for-index="{{i}}">
+<image scr="{{Icon[0][0]}}"class="listImage"></image>
+<view class="IconAddr">{{Icon[0][0]}}</view>
+<view class="listWord">
+<view>{{item.upload_time}}</view>
+<view>{{item.attention_number}}</view>
+<view>{{item.type}}</view>
+</view>
+</view>
+<view>
+<view wx:if="{{hiden}}" class="textNothing">
+<image src="../../res/loading.gif"class="moreImage"></image></view>
+<view wx:else class="textNothing"><text>没有更多</text></view>
+</view>
 </scroll-view>
-
-  <view hidden="{{hotshidden}}" class="hot-box-more">
-                <view wx:if="{{hothidden}}">
-                    <image src="/res/loading.gif" mode="aspectFill"/>
-                </view>
-                <view wx:else>
-                    <text> 没有更多了 </text>
-                </view>
-            </view>
-
-
-

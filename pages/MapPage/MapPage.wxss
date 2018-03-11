@@ -16,6 +16,10 @@ page{
   align-items: center;
 }
 .button1-image{
-  width:120rpx;
+  width:100rpx;
   height:80rpx;
+}
+.text{
+  font-size:34rpx;
+  color:gray;
 }
