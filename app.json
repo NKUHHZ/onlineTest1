@@ -15,7 +15,7 @@
   "window":{
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#000000",
-    "navigationBarTitleText": "环保小督查",
+    "navigationBarTitleText": "环保随手拍",
     "navigationBarTextStyle":"white"
   },
   "tabBar":

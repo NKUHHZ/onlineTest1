@@ -9,7 +9,8 @@
    <view wx:for="{{list}}" wx:key="item" wx:for-index="i" class='listView'>
    <view class="head" >
       <text style='margin-right:60rpx;margin-left:30rpx;'>关注{{item.attention_number}}</text>
-      <text>浏览{{item.look_number}}</text>
+      <text style='margin-right:60rpx'>浏览{{item.look_number}}</text>
+      <text style='margin-right:60rpx'>类型:{{item.type}}</text>
    </view>
     <view class="right" style='background:white;'>
       <block wx:for="{{paths[i]}}" wx:key="item" class='imgs'>
@@ -27,7 +28,7 @@
   <view wx:if="{{hiden}}" class="textNothing">
     <image   src="../../res/loading.gif"class="moreImage"></image>
   </view>
-  <view wx:else class="textNothing"><text>没有更多     </text>
+  <view wx:else class="textNothing"><text>没有更多了     </text>
   </view>
 </view>
 </scroll-view>

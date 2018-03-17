@@ -48,10 +48,6 @@ function onLoad(that){
       var user_id = 'no';
       if(user_id=='no'){
         //user_id没有缓存走登陆流程获取
-        wx.showLoading({
-          title: '正在登陆....',
-          mask:true,
-        })
         wx.login({
           success: function (res) {
             // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -90,7 +86,7 @@ function onLoad(that){
                 })
               },
               complete:function(res){
-                wx.hideLoading();
+                
               }
             })
           },

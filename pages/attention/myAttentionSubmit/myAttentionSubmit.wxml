@@ -1,2 +1,36 @@
-<!--pages/attention/myAttentionSubmit/myAttentionSubmit.wxml-->
-<text>pages/attention/myAttentionSubmit/myAttentionSubmit.wxml</text>
+
+<view>
+  <view class='mydetails'>
+    <text>我关注的动态</text>
+  </view>
+  <scroll-view class='scrollView'style='background:white'
+ scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM">
+    <view wx:for="{{attentionList}}" wx:key="item" wx:for-index="i" class="listView"><!--展示用户关注的动态-->
+        <view class="userInfo">
+          <image src='{{item.ifAnonymity=="1"?userIcon:item.head_portrait}}' class='userPortrait'></image>
+          <text>{{item.ifAnonymity=='1'?'匿名用户':item.user_name}}</text>
+          <button class="{{isAttentioned[i]?'cancelButton':'attentionButton'}}" bindtap='cancelAttention' data-index="{{i}}">{{isAttentioned[i]?'取消关注':'关注'}}</button>
+        </view>
+          <view class="poluteInfo">
+            <text class="poluteInfo">浏览:{{item.look_number}}</text>
+            <text class="poluteInfo">关注:{{item.attention_number}}</text>
+            <text class="poluteInfo">类型: {{item.type}}</text>
+          </view>
+          <view style='display:flex;flex-direction:row;flex-wrap:wrap;'>
+          <view wx:for="{{paths[i]}}" wx:key="item" class="imgs">
+        <image bindtap='preImage' data-list="{{paths[i]}}" data-src="{{item}}" src="{{item}}" class='images'></image>
+        </view>
+        </view>
+          <view class='uploadInfo'>
+            
+            <text style='color:gray;font-size:30rpx;'>{{item.upload_time}}</text>
+            <text style='color:blue;font-size:35rpx;'>{{item.upload_location}}</text>
+          </view>
+        </view>
+        <view wx:if="{{hiden}}" class="textNothing">
+    <image   src="../../../res/loading.gif"class="moreImage"></image>
+  </view>
+  <view wx:else class="textNothing"><text>没有更多了     </text>
+  </view>
+  </scroll-view>
+</view>

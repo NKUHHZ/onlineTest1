@@ -23,9 +23,10 @@
     <image src="{{imageUrl1}}" class="flex-cell" mode="aspectFit"></image>
     <image src="{{imageUrl2}}" class="flex-cell" mode="aspectFit"></image>
     <image src="{{imageUrl3}}" class="flex-cell" mode="aspectFit"></image>
+    <image src="{{imageUrl4}}" class="flex-cell" mode="aspectFit"></image>
   </view>
 </view>
-  <view><text class='address'>{{address}}</text></view>
+  <view style='margin-top:80rpx;margin-bottom:40rpx;color:blue;'><text class='address'>{{address}}</text></view>
   <button class='button1' bindtap='selectImage' >选择图片</button><!--图片选择按钮-->
   <button class='button1' bindtap='upload' disabled="{{disabled}}">点击上传</button><!--图片上传按钮-->
   </view>

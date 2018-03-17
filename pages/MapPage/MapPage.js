@@ -2,7 +2,9 @@
 const app = getApp();
 Page({
   data: {
+    change:false,
     markers: [],
+    upload:[],
     controls: [{
       id: 1,
       iconPath: '../../res/wz.png',
@@ -17,9 +19,11 @@ Page({
     longitude: 113.324520,//广州坐标
     latitude: 23.099994,
   },
+
   onReady: function (e) {
     // 使用 wx.createMapContext 获取 map 上下文
-    this.mapCtx = wx.createMapContext('map')
+    this.mapCtx = wx.createMapContext('map');
+    
   },
   controltap(e) {
     var that = this;
@@ -28,8 +32,10 @@ Page({
       success: function (res) {
         that.setData({
           latitude: res.latitude,
-          longitude: res.longitude
+          longitude: res.longitude,
+          change:true
         })
+        updateMarkers(that,res)
       },
       fail: function (res) {
         wx.showModal({
@@ -40,23 +46,14 @@ Page({
       }
     })
   },
-  regionchange(e) {
-    if (e.type == "begin") {
-
-    } else if (e.type == "end") {
-
-
-      this.mapCtx.getCenterLocation({
-        success: function (res) {
-          console.log(res.longitude);
-          console.log(res.latitude);
-          updateMarkers(this,res);
-        }
-      });
-    }
-  },
+  
   markertap(e) {
-    console.log(e.markerId)
+    console.log(e.markerId);
+    //定位到详情页面
+    app.globalData.storyListG=this.data.upload[e.markerId];
+    wx.navigateTo({
+      url: '../Activity/Activity',
+    })
   },
   toSubmit: function () {
     var loginStatus = app.globalData.loginStatus;
@@ -82,7 +79,9 @@ Page({
         that.setData({
           longitude: res.longitude,
           latitude: res.latitude,
+          change:true,
         })
+        updateMarkers(that,res)
       },
       fail: function () {
         // fail
@@ -93,35 +92,47 @@ Page({
     })
   },
   
-  onLoad:function(){
+  onShow:function(){
     var that = this;
-    wx.getLocation({//获取当前位置的坐标
-      success: function (res) {
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
-        })
-      },
-      fail:function(res){
-        wx.showModal({
-          title: 'Error',
-          content: '获取位置失败，请开启定位并授予权限',
-          showCancel:false,
-        })
-      }
-    })
-    querySurroundingUpdate(that);
+    if(!that.data.change){//如果用户操作改变那么不执行
+      wx.showModal({
+        title: '提示',
+        content: '当前展示所在区的上传情况，如果想看其他城市及地区的情况可以点击地图选择其他地区哟',
+        showCancel: false,
+      })
+      wx.getLocation({//获取当前位置的坐标
+        type: 'gcj02',
+        success: function (res) {
+          that.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          })
+          querySurroundingUpdate(that);
+        },
+        fail: function (res) {
+          wx.showModal({
+            title: 'Error',
+            content: '获取位置失败，请开启定位并授予权限',
+            showCancel: false,
+          })
+        }
+      })
+    }else{
+      querySurroundingUpdate(that);
+    }
+    
   }
 })
 
 function querySurroundingUpdate(that){
   //查询所有已经上传的点的坐标
+  console.log(that.data.longitude+" "+that.data.latitude)
   wx.request({
     url: 'https://brightasdream.cn/uploadImage/handlelooksurrounding',
     data: {
       'longitude': that.data.longitude,
       'latitude': that.data.latitude,
-      'radius': 100,
+      'radius': 0.01,
     },
     header: {
       'content-type': 'application/json'
@@ -129,6 +140,10 @@ function querySurroundingUpdate(that){
     dataType: "json",
     success: function (res) {
       console.log(res.data);
+      that.setData({
+        upload:res.data,
+        markers:[]
+      })
       var temp = res.data;
       for (var i = 0; i < temp.length; i++) {
         var tt = {
@@ -137,7 +152,15 @@ function querySurroundingUpdate(that){
           latitude: '',
           longitude: '',
           width: 30,
-          height: 30
+          height: 30,
+          callout:{
+            content:'点击查看',
+            color:'#00BFFF',
+            fontSize:10,
+            padding:5,
+            display:'ALWAYS',
+            borderRadius:10,
+          }
         }
         tt.longitude = temp[i].upload_longitude;
         tt.latitude = temp[i].upload_latitude;
@@ -165,7 +188,7 @@ function updateMarkers(that,res){
     data: {
       'longitude': res.longitude,
       'latitude': res.latitude,
-      'radius': 1,
+      'radius': 0.01,
     },
     header: {
       'content-type': 'application/json'
@@ -180,8 +203,16 @@ function updateMarkers(that,res){
           id: i,
           latitude: '',
           longitude: '',
-          width: 50,
-          height: 50
+          width: 30,
+          height: 30,
+          callout: {
+            content: '点击查看',
+            color: '#00BFFF',
+            fontSize: 10,
+            padding: 5,
+            display: 'ALWAYS',
+            borderRadius: 10,
+          }
         }
         tt.longitude = temp[i].upload_longitude;
         tt.latitude = temp[i].upload_latitude;

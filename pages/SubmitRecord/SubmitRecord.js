@@ -42,6 +42,7 @@ Page({
           that.setData({
             list:that.data.list.concat(res.data),
           })
+          console.log(that.data.list)
           var l = res.data;
           var p = new Array(l.length);
           for (var j = 0; j < l.length; j++) {
@@ -52,13 +53,14 @@ Page({
             for (var i = 0; i < t.length; i++) {
               p[j][i] = 'https://brightasdream.cn/uploadImage/upload/' + wx.getStorageSync("session_key") + '/' + l[j].uploadId + '/' + p[j][i];//得到服务器上的图片的路劲
             }
-            that.setData(
-              {
-                paths: that.data.paths.concat(p),
-              }
-            )
-            console.log(that.data.paths);
           }
+          console.log(p);
+          that.setData(
+            {
+              paths: that.data.paths.concat(p),
+            }
+          )
+          console.log(that.data.paths);
         }
       })
       that.setData({

@@ -13,23 +13,24 @@ page{
 .userinfo_text{
   font-size:35rpx;
   font-weight:200;
-  color:gray;
+  color:black;
 }
 .image_frame{
-   width: 128rpx;
-  height: 128rpx;
-  margin: 40rpx;
+   width: 64rpx;
+  height: 64rpx;
+  margin: 20rpx;
   border-radius: 50%;
 }
 .Image{
   background-color:white;
   flex-direction: row;
   display:flex;
+  flex-wrap: wrap;
 }
 .storyImage{
-  margin:10px;
-  max-width:100px;
-  max-height:62px;
+  margin:10rpx;
+  max-width:150px;
+  max-height:100px;
 }
 .list{
   background-color:white;
@@ -54,7 +55,7 @@ page{
   font-weight:400;
   margin:30rpx;
   font-size:30rpx;
-  color:#666;
+  color:red;
 }
 .text_uploadTime
 {
@@ -62,4 +63,18 @@ page{
   margin:30rpx;
   font-size:30rpx;
   color:#666;
+}
+.text_uploadlocation
+{
+  font-weight:400;
+  margin:30rpx;
+  font-size:30rpx;
+  color:blue;
+}
+.yes{
+  color:white;width:200rpx;height:80rpx;background:gray;margin-top:30rpx;font-size:30rpx;margin-bottom: 30rpx;
+}
+.no{
+  color:white;width:200rpx;height:80rpx;background:lightblue;margin-top:30rpx;font-size:30rpx;
+  margin-bottom: 30rpx;
 }

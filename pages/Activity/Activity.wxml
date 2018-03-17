@@ -1,10 +1,10 @@
 <!--用户-->
 <view wx:for="{{userInfo}}">
  <view class='userPic'> 
- 
-  <image class="image_frame" src="{{item.head_portrait}}" 
+
+  <image class="image_frame" src='{{activity.ifAnonymity=="1"?userIcon:item.head_portrait}}
   mode="aspectFill" >  </image>  <!--imageUr是加载图片的地址-->
-  <text class="userinfo_text">{{item.user_name}}</text>
+  <text class="userinfo_text">{{activity.ifAnonymity=="1"?'匿名用户':item.user_name}}</text>
 </view>
 </view>
 <view>
@@ -20,7 +20,16 @@
       <text class="text_attention">关注：{{activity.attention_number}}</text>
     </view>
     <view>
-      <text class="text_uploadTime">上传时间：{{activity.upload_time}}</text>
+      <text class="text_uploadTime">时间：{{activity.upload_time}}</text>
+    </view>
+    <view>
+      <text class="text_uploadlocation">位置：{{activity.upload_location}}</text>
+    </view>
+    <view style='margin-top:100rpx;'>
+      <text style='color:gray;font-size:30rpx;margin-left:40rpx;'>如果此问题急待处理，那就点个关注让大家都能看到吧~</text>
+      <button class="{{isAttentioned?'yes':'no'}}" bindtap='attentionUser'>
+        {{isAttentioned?'已关注':'关注'}}
+      </button>
     </view>
    </view> 
 </view>

@@ -21,7 +21,6 @@ page{
   flex-direction: row;
 }
 .scrollView{
-  padding-top: 100rpx;
   height:900rpx;
 }
 .moreImage{
@@ -35,6 +34,9 @@ page{
   flex-direction:row;
   justify-content: center;
   align-items: center;
+  background: whitesmoke;
+  color:gray;
+  font-size:30rpx;
 }
 .head{
   display: flex;

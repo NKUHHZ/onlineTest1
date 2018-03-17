@@ -1,1 +1,82 @@
-/* pages/attention/myAttentionSubmit/myAttentionSubmit.wxss */
+page{
+  background: whitesmoke;
+}
+.mydetails{
+  margin-top:100rpx;
+  text-align: center;
+  color:deepskyblue;
+  margin-bottom: 50rpx;
+}
+.scrollView{
+  height:1100rpx;
+}
+.listView{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 40rpx;
+  border-bottom:2rpx solid lightgray;
+}
+.attentionSubmit{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.userInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top:20rpx;
+}
+
+.userPortrait{
+  width:64rpx;
+  height:64rpx;
+  border-radius: 50%;
+}
+.cancelButton{
+  color:white;width:200rpx;height:60rpx;background:gray;font-size:30rpx;flex:none;display: flex;
+  justify-content: flex-end;
+}
+.imgs{
+   display: flex;
+  flex-direction: row;
+}
+
+.images{
+  width:200rpx;
+  height:200rpx;
+  padding: 5rpx;
+}
+.poluteInfo{
+  font-size: 30rpx;
+  color:gray;
+  display: flex;
+  flex-direction: row;
+  margin-left: 40rpx;
+}
+
+.uploadInfo{
+  display: flex;
+  flex-direction: column;
+}
+.attentionButton{
+  color:white;width:200rpx;height:60rpx;background:lightblue;font-size:30rpx;flex:none;display: flex;
+  justify-content: flex-end;
+}
+
+.textNothing{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+  background: whitesmoke;
+  color:gray;
+  font-size:30rpx;
+}
+.moreImage{
+  width:80px;
+  height:16px;
+  flex-direction: row;
+  align-items:center;
+}

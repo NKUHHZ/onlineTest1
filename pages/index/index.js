@@ -6,10 +6,8 @@ Page({
     uploadTimes:1,
     hiden:true,
     topStories: [
-      'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=684276477,2474013616&fm=27&gp=0.jpg',
-      'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1623529198,932220174&fm=27&gp=0.jpg',
-      'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1446989525,2907093786&fm=27&gp=0.jpg',
-      'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1192368817,540312063&fm=27&gp=0.jpg',
+      
+      '../../res/logo.png',
     ],
     getStorydata:[
 
@@ -23,7 +21,7 @@ Page({
     that.setData({
       hiden:true
     })
-    if(that.data.uploadTimes>=5)
+    if(that.data.uploadTimes>=10000000)
     {
       that.setData({
         hiden:false
@@ -38,6 +36,12 @@ Page({
 
   success: function (res) {
     console.log(res.data);
+    if (!res.data[0]) {
+      that.setData({
+        hiden: false
+      });
+      return;
+    }
     that.setData({
       storyList: that.data.storyList.concat(res.data),
     });
@@ -55,7 +59,7 @@ Page({
       }
       that.setData(
         {
-          Icon: that.data.Icon.concat(p[j][0]),
+          Icon: that.data.Icon.concat(p),
         }
       )
       console.log("0,0")
@@ -76,22 +80,38 @@ that.setData({
    */
   listenSwiper: function (e) {
     //打印信息
-    console.log(e)
+    
   },
 
   onLoad: function (options) {
+    
+  },
+  onReady: function () {
+    // 页面渲染完成
+  },
+  onShow: function () {
+    // 页面显示
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
+    that.setData({
+      uploadTimes:1,
+    })
     wx.request({
       url: 'https://brightasdream.cn/uploadImage/handlelatestdynamic',
-      data:{
-        'page':that.data.uploadTimes,
+      data: {
+        'page': that.data.uploadTimes,
       },
 
-      success:function(res){
+      success: function (res) {
         console.log(res.data);
+        if (!res.data[0]) {
+          that.setData({
+            hiden: false
+          });
+          return;
+        }
         that.setData({
-          storyList:res.data,
+          storyList: res.data,
         });
         var l = res.data;
         var p = new Array(l.length);
@@ -106,23 +126,17 @@ that.setData({
           }
           that.setData(
             {
-              Icon: that.data.Icon.concat(p[j][0]),
+              Icon: p,
             }
 
-    
+
           )
         }
       }
     })
     that.setData({
-    uploadTimes:that.data.uploadTimes+1
+      uploadTimes: that.data.uploadTimes + 1
     })
-  },
-  onReady: function () {
-    // 页面渲染完成
-  },
-  onShow: function () {
-    // 页面显示
   },
   onHide: function () {
     // 页面隐藏
@@ -139,10 +153,10 @@ that.setData({
     var dataI=e.currentTarget.dataset.index;
     var dataStory=e.currentTarget.dataset.story;
     app.globalData.storyListG=dataStory;
-    console.log(dataI);
-    console.log("$$")
-    console.log(dataStory.uploadId)
-    
+    that.data.storyList[dataI].look_number++;
+    that.setData({
+      storyList:that.data.storyList,
+    })
     wx.navigateTo({
       url: '../Activity/Activity?number='+dataI
     })

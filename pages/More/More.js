@@ -11,41 +11,36 @@ Page({
     userList:{
       
     },
+    myAttentionSubmit:0,
     userOperation:[
       {
         isunread: false,
-        unreadNum: 2,
         icon:'../../res/png resource/bar_home_black.png',
         text:'我的上传记录',
       },
       {
         isunread: false,
-        unreadNum: 2,
         icon:'../../res/png resource/bar_home_black.png',
         text:'我的关注',
 
       },
       {
         isunread: false,
-        unreadNum: 2,
-        icon:'../../res/png resource/bar_home_black.png',
-        text:'我关注的用户'
-
+        icon: '../../res/png resource/bar_home_black.png',
+        text: '上传图片证据'
       },
       {
         isunread: false,
-        unreadNum: 2,
-        icon:'../../res/png resource/bar_home_black.png',
-        text:'关注我的用户'
-
-      },
-      {
-        isunread: false,
-        unreadNum: 2,
         icon:'../../res/png resource/bar_home_black.png',
         text:'关于小程序'
-      }
+      },
     ]
+    },
+    logout:function(){
+      app.globalData.loginStatus='fail';
+      this.setData({
+        loginStatus:false,
+      })
     },
   tap:function(e){
     console.log(e.currentTarget.dataset.index);
@@ -58,12 +53,31 @@ Page({
       })
       return;
     }
-    if(e.currentTarget.dataset.index==0)
-    {
-      wx.navigateTo({
-        url: '/pages/SubmitRecord/SubmitRecord',
-      })
+    switch (e.currentTarget.dataset.index){
+      case 0: 
+        wx.navigateTo({
+          url: '/pages/SubmitRecord/SubmitRecord',
+        })
+        break;
+      case 1: 
+        wx.navigateTo({
+          url: '/pages/attention/myAttentionSubmit/myAttentionSubmit',
+        })
+        break;
+      case 2:
+        wx.navigateTo({
+          url: '/pages/Submit/Submit',
+        })
+        break;
+      case 3:
+        wx.showModal({
+          title: 'About',
+          content: '版本1.0，提供了上传，动态展示，地图展示，动态关注，查看上传记录功能.有任何问题可以到我们公众号留言哦',
+          showCancel:false,
+        })
+        break;
     }
+    
   },
   tapLogin:function(){
     var that = this;
@@ -76,7 +90,11 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    updateUserStatus(that);
+    if(app.globalData.loginStatus=='success')
+      updateUserStatus(that);
+  },
+  onShow:function(){
+    getUserUpload(this);
   }
 })
 
@@ -106,47 +124,6 @@ function updateUserStatus(that){
       }
     })
   }
-  //向服务器请求返回用户的关注数和上传记录数
-  wx.showLoading({
-    title: '正在登陆....',
-    mask:true,
-  })
-  wx.request({
-    url: 'https://brightasdream.cn/uploadImage/handleAlldate',
-    data: {
-      'user_id': wx.getStorageSync('session_key')
-    },
-    header: {
-      'content-type': 'application/json'
-    },
-    dataType: "json",
-    success: function (res) {
-      console.log(res.data);
-      var temp = res.data;
-      if(!temp[0]){
-        console.log("返回用户信息为空");
-        return;
-      }
-      that.setData({
-        userList: temp[0],//得到返回的自己的信息,返回的是json数组
-      })
-      that.setData({
-        user_icon: that.data.userInfo.avatarUrl,
-        user_name: that.data.userInfo.nickName,
-        loginStatus: true,
-      });
-    },
-    fail: function (res) {
-      wx.showModal({
-        title: 'Error',
-        content: '请求服务器失败，请检查您的网络设置',
-        showCancel: false,
-      })
-    },
-    complete:function(res){
-      wx.hideLoading();
-    }
-  })
 }
 
 function tryLogin(that){
@@ -193,10 +170,7 @@ function tryLogin(that){
                     user_name: that.data.userInfo.nickName,
                     loginStatus: true,
                   });
-                  wx.showModal({
-                    title: 'Success',
-                    content: '登陆成功！',
-                  })
+                  
                 } else {
                   console.log(loginStatus);
                 }
@@ -286,4 +260,73 @@ function tryLogin(that){
   wx.hideLoading();
   //更新用户信息
   updateUserStatus(that);
+}
+
+function getUserUpload(that){
+  //向服务器请求返回用户的关注数和上传记录数
+  wx.showLoading({
+    title: '正在登陆....',
+    mask: true,
+  })
+  wx.request({
+    url: 'https://brightasdream.cn/uploadImage/handleAlldate',
+    data: {
+      'user_id': wx.getStorageSync('session_key')
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    dataType: "json",
+    success: function (res) {
+      console.log(res.data);
+      var temp = res.data;
+      if (!temp[0]) {
+        console.log("返回用户信息为空");
+        return;
+      }
+      that.setData({
+        userList: temp[0],//得到返回的自己的信息,返回的是json数组
+      })
+      that.setData({
+        user_icon: that.data.userInfo.avatarUrl,
+        user_name: that.data.userInfo.nickName,
+        loginStatus: true,
+      });
+    },
+    fail: function (res) {
+      wx.showModal({
+        title: 'Error',
+        content: '请求服务器失败，请检查您的网络设置',
+        showCancel: false,
+      })
+    },
+    complete: function (res) {
+      wx.hideLoading();
+    }
+  });
+  //获取我关注的用户总数
+  wx.request({
+    url: 'https://brightasdream.cn/uploadImage/handlecountconcernnumber',
+    data: {
+      'user_id': wx.getStorageSync('session_key')
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    dataType: "json",
+    success: function (res) {
+      console.log(res.data);
+      that.setData({
+        myAttentionSubmit: res.data,
+      })
+      wx.setStorageSync('attention', res.data)
+    },
+    fail: function (res) {
+      wx.showModal({
+        title: 'Error',
+        content: '请求服务器失败，请检查您的网络设置',
+        showCancel: false,
+      })
+    },
+  })
 }
