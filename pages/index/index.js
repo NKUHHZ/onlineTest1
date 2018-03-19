@@ -2,6 +2,7 @@ const app=getApp();
 
 Page({
   data: {
+    currentTab:0,//当前所在的tab
     Icon:[],
     uploadTimes:1,
     hiden:true,
@@ -14,7 +15,22 @@ Page({
     ],
     storyList:[],
   },
-  LM: function (e) {
+  tab_slide: function (e) {//滑动切换tab   
+    var that = this;
+    that.setData({ currentTab: e.detail.current});
+  },  
+  swichNav: function (e) {//点击tab切换  
+    var that = this;
+    console.log(e)
+    if (that.data.currentTab == e.currentTarget.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.currentTarget.dataset.current
+      })
+    }
+  },  
+  LM: function (e) {//下拉加载更多动态
     
     var that = this;
     console.log('555')

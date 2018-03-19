@@ -1,36 +1,59 @@
 <!--首页-->
-
-<!--滑块-->
-<swiper indicator-dots="true" autoplay="true" duration="100" bindchange="listenSwiper" class="swiper">
-<swiper-item wx:for="{{topStories}}">
-<image mode="scaleToFill" src="{{item}}"class="slide-image"/>
-</swiper-item>
-
-</swiper>
-<view class="themes-box-top">
-      <text class="themes-box-title">每日热点</text>
-        <text class="themes-box-subtitle">你想要知道的环境热点</text>
+<view>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0?'on':''}}" data-current="0" bindtap="swichNav"><text>发现</text></view>
+    <view class="swiper-tab-list {{currentTab==1?'on':''}}" data-current="1" bindtap="swichNav"><text>最新</text></view>
+    <view class="swiper-tab-list {{currentTab==2?'on':''}}" data-current="2" bindtap="swichNav"><text>热点</text></view>
   </view>
-<!-->
-<!-- 列表 -->
-<scroll-view scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" style="height:700rpx">
-<view wx:for="{{storyList}}" wx:for-index="i"class="storyList" bindtap="tap" data-index="{{i}}" data-story="{{storyList[i]}}">
-<image src="{{Icon[i][0]}}"class="listImage"></image>
-<view class="listWord">
-<view>
-<text class="uploadAttention">关注：{{item.attention_number}}</text>
-<text class="type">污染类型：{{item.type}}</text>
-</view>
-<view>
-<text class="uploadTime">上传时间：{{item.upload_time}}</text><text class="look-number">浏览量:{{item.look_number}}</text>
-</view>
+  <!--添加tab-->
+  <swiper current="{{currentTab}}" class="swiper-box" style="height:{{winHeight - 31}}px" bindchange="tab_slide">
+  <swiper-item>
+  <view style='height:900rpx;'>
+    <!--滑块-->
+    <swiper indicator-dots="true" autoplay="true" duration="100" bindchange="listenSwiper" class="swiper">
+      <swiper-item wx:for="{{topStories}}">
+      <image mode="scaleToFill" src="{{item}}"class="slide-image"/>
+      </swiper-item>
+    </swiper>
+    <view class="themes-box-top">
+      <text class="themes-box-title">每日热点</text>
+      <text class="themes-box-subtitle">你想要知道的环境热点</text>
+    </view>
+  <!-- 列表 -->
+    <scroll-view scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" style="height:700rpx">
+      <view wx:for="{{storyList}}" wx:for-index="i"class="storyList" bindtap="tap" data-index="{{i}}" data-story="{{storyList[i]}}">
+        <image src="{{Icon[i][0]}}"class="listImage"></image>
+        <view class="listWord">
+          <view>
+            <text class="uploadAttention">关注：{{item.attention_number}}</text>
+            <text class="type">污染类型：{{item.type}}</text>
+          </view>
+        <view>
+          <text class="uploadTime">上传时间：{{item.upload_time}}</text><text class="look-number">浏览量:{{item.look_number}}</text>
+        </view>
 
-</view>
+        </view>
 
+      </view>
+      <view>
+        <view wx:if="{{hiden}}" class="textNothing">
+          <image src="../../res/loading.gif"class="moreImage"></image>
+        </view>
+        <view wx:else class="textNothing"><text>没有更多了</text></view>
+      </view>
+    </scroll-view>
+  </view>
+  </swiper-item>
+
+  <swiper-item>
+    <view>
+    最新
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view>
+    最热
+    </view>
+  </swiper-item>
+  </swiper>
 </view>
-<view>
-<view wx:if="{{hiden}}" class="textNothing">
-<image src="../../res/loading.gif"class="moreImage"></image></view>
-<view wx:else class="textNothing"><text>没有更多了</text></view>
-</view>
-</scroll-view>

@@ -2,6 +2,29 @@
 page{
   background-color:whitesmoke;
 }
+
+.swiper-tab{
+  padding-top:20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  padding-bottom: 20rpx;
+}
+.swiper-box{
+  height:1000rpx;
+}
+.swiper-tab-list{
+  display: flex;
+  text-align: center;
+  height:60rpx;
+}
+.on{
+  text-align: center;
+  color:#ed1941;
+  border-bottom: 1rpx solid #ed1941;
+}
+
 .swiper{
   height: 300rpx;
   width: 100%
