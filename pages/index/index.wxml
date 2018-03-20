@@ -17,9 +17,9 @@
         </swiper-item>
       </swiper>
       <view class='buttonView'><!--按钮区，上传等按钮显示在这里-->
-        <view class='notice'><text>上传图片</text></view>
-        <view class='notice'><text>使用指南</text></view>
-        <view class='notice'><text>系统公告</text></view>
+        <view class='notice' hover-class="hover"><text>上传图片</text></view>
+        <view class='notice' hover-class="hover"><text>使用指南</text></view>
+        <view class='notice' hover-class="hover"><text>系统公告</text></view>
       </view>
       <view class="themes-box-top">
         <text class="themes-box-title">每日热点</text>
