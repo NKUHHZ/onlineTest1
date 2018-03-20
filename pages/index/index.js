@@ -52,7 +52,7 @@ Page({
 
   success: function (res) {
     console.log(res.data);
-    if (!res.data[0]) {
+    if (!res.data[4]) {
       that.setData({
         hiden: false
       });
@@ -120,6 +120,11 @@ that.setData({
 
       success: function (res) {
         console.log(res.data);
+        if (res.data.length<5) {
+          that.setData({
+            hiden: false
+          });
+        }
         if (!res.data[0]) {
           that.setData({
             hiden: false

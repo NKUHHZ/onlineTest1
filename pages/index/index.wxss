@@ -102,3 +102,25 @@ page{
   font-size:15px;
   color:#999
 }
+.hover{
+  background-color: #d3d7d4;
+}
+
+.buttonView{  /*按钮区的CSS属性*/
+  display: flex;
+  flex: row;
+  justify-content: space-around;
+  padding:20rpx;
+  background:#F8F8FF;
+  margin: 10rpx;
+  border:1rpx solid #f6f5ec;
+  box-shadow: 5rpx 5rpx 2.5rpx #888888;
+}
+
+.notice{ /*按钮区文字的属性*/
+  font-family: "宋体";
+  border:1rpx solid #ed1941;
+  padding: 5rpx;
+  font-size: 30rpx;
+  background: #fffef9;
+}
