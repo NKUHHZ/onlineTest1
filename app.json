@@ -14,7 +14,7 @@
   ],
   "window":{
     "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#00FF7F",
+    "navigationBarBackgroundColor": "#336666",
     "navigationBarTitleText": "环境小督察",
     "navigationBarTextStyle":"white"
   },
@@ -22,27 +22,27 @@
   {
 
     "color": "gray",
-    "selectedColor": "white",
-    "backgroundColor": "#00FF7F",
-    "borderStyle": "#00FF7F",
+    "selectedColor": "#339933",
+    "backgroundColor": "white",
+    "borderStyle": "#336666",
     "list":[
       {
         "pagePath":"pages/index/index",
-        "iconPath": "res/png resource/bar_explore_black.png",
-        "selectedIconPath":"res/png resource/bar_explore.png",
+        "iconPath": "res/png resource/bar_home_black.png",
+        "selectedIconPath": "res/png resource/bar_home_green3.png",
 
         "text":"首页"
       },
       {
         "pagePath":"pages/MapPage/MapPage",
-        "iconPath": "res/png resource/bar_home_black.png",
-        "selectedIconPath":"res/png resource/bar_home.png",
+        "iconPath": "res/png resource/map3.png",
+        "selectedIconPath":"res/png resource/map4.png",
         "text":"地图"
       },
       {
         "pagePath":"pages/More/More",
         "iconPath": "res/png resource/bar_mine_black.png",
-        "selectedIconPath": "res/png resource/bar_mine.png",
+        "selectedIconPath": "res/png resource/bar_mine_green3.png",
         "text":"更多"
       }
 

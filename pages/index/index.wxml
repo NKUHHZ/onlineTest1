@@ -1,9 +1,9 @@
 <!--首页-->
 <view>
   <view class="swiper-tab">
-    <view class="swiper-tab-list {{currentTab==0?'on':''}}" data-current="0" bindtap="swichNav"><text>发现</text></view>
-    <view class="swiper-tab-list {{currentTab==1?'on':''}}" data-current="1" bindtap="swichNav"><text>最新</text></view>
-    <view class="swiper-tab-list {{currentTab==2?'on':''}}" data-current="2" bindtap="swichNav"><text>热点</text></view>
+    <view class="swiper-tab-list {{currentTab==0?'on':''}}" data-current="0" bindtap="swichNav"><text class="textf">发现</text></view>
+    <view class="swiper-tab-list {{currentTab==1?'on':''}}" data-current="1" bindtap="swichNav"><text class="textf">最新</text></view>
+    <view class="swiper-tab-list {{currentTab==2?'on':''}}" data-current="2" bindtap="swichNav"><text class="textf">热点</text></view>
   </view>
   <!--添加tab-->
   <swiper current="{{currentTab}}" class="swiper-box" style="height:{{winHeight - 31}}px" bindchange="tab_slide">
@@ -18,11 +18,12 @@
       </swiper>
       <view class='buttonView'><!--按钮区，上传等按钮显示在这里-->
         <view class='notice' hover-class="hover">
-          <image src='../../res/camera.png' class="button1-image"></image>
-          <text>上传图片</text>
+          <image src='../../res/camera1.png' class="button1-image"></image>
+          <text hover-class="hoverText">上传图片</text>
         </view>
-        <view class='notice' hover-class="hover"><text>使用指南</text></view>
-        <view class='notice' hover-class="hover"><text>系统公告</text></view>
+        <view class='notice' hover-class="hover"><image src='../../res/directior.png' class="button1-image"></image><text hover-class="hoverText">使用指南</text></view>
+        <view class='notice' hover-class="hover">
+        <image src='../../res/announce.png' class="button1-image"></image><text hover-class="hoverText">系统公告</text></view>
       </view>
       <view class="themes-box-top">
         <text class="themes-box-title">每日热点</text>

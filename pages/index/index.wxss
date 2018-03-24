@@ -13,16 +13,20 @@ page{
 }
 .swiper-box{
   height:1000rpx;
+
+
+
+
 }
 .swiper-tab-list{
   display: flex;
   text-align: center;
-  height:60rpx;
+  height:50rpx;
 }
 .on{
   text-align: center;
-  color:#45b97c;
-  border-bottom: 1rpx solid #45b97c;
+  color:#339933;
+  
 }
 
 .swiper{
@@ -66,10 +70,10 @@ page{
   flex-direction: row;
   align-items: center;
   background: white;
-  border-bottom:solid 1px whitesmoke;
+  border-bottom-width:1px;
+  border-color:black;
   padding-left: 10rpx;
   margin-bottom: 5rpx;
-  box-shadow: 2rpx 2rpx 1rpx #888888;
 }
 .uploadTime{
   font-weight:300;
@@ -105,36 +109,48 @@ page{
   font-size:15px;
   color:#999
 }
+.hoverTest
+{
+  background-color:green;
+}
 .hover{
   background-color: #d3d7d4;
 }
 
 .buttonView{  /*按钮区的CSS属性*/
+
   display: flex;
   flex: row;
   justify-content: space-around;
   padding:20rpx;
-  background:#F8F8FF;
-  margin: 10rpx;
+  background:#EDEDED;
+  /*margin: 10rpx;
   border:1rpx solid #f6f5ec;
-  box-shadow: 5rpx 5rpx 2.5rpx #888888;
+  /*box-shadow: 5rpx 5rpx 2.5rpx #888888;*/
 }
 
 .notice{ /*按钮区文字的属性*/
-  font-family: "楷体";
   padding: 5rpx;
   font-size: 25rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color:#999;
+  font-weight:200;
 }
 
 .button1-image{
-  border-radius: 50%;
-  border:1rpx solid springgreen;
-  width: 65rpx;
-  height:65rpx;
-  padding:20rpx;
-  margin-bottom:10rpx;
+  /*border-radius: 50%;
+  border:1rpx solid ;*/
+  border-color:green;
+  width: 55rpx;
+  height:40rpx;
+  margin:10rpx;
+}
+.textf{
+  font-weight:400;
+  font-family:"微软雅黑";
+
+  font-size:20px;
 }
