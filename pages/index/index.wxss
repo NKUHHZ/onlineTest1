@@ -130,9 +130,8 @@ page{
 }
 
 .notice{ /*按钮区文字的属性*/
-  /*font-family: "宋体";*/
   padding: 5rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
