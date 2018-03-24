@@ -6,7 +6,7 @@ Page({
     Icon:[],
     uploadTimes:1,
     hiden:true,
-    topStories: [
+    topStories: [   //滚动栏里面的文章
       
       '../../res/logo.png',
     ],

@@ -152,7 +152,7 @@ Page({
         'SubmitLocation':address,
         'ifAnonymity':ifAnonymityx,
         'isInsert':j,
-        'poluteType':that.data.poluteType
+        'poluteType':that.data.poluteType,
       },
       success: function (res) {
         console.log(j);
