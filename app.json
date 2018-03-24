@@ -14,8 +14,8 @@
   ],
   "window":{
     "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#000000",
-    "navigationBarTitleText": "环保随手拍",
+    "navigationBarBackgroundColor": "#00FF7F",
+    "navigationBarTitleText": "环境小督察",
     "navigationBarTextStyle":"white"
   },
   "tabBar":
@@ -23,8 +23,8 @@
 
     "color": "gray",
     "selectedColor": "white",
-    "backgroundColor": "black",
-    "borderStyle": "black",
+    "backgroundColor": "#00FF7F",
+    "borderStyle": "#00FF7F",
     "list":[
       {
         "pagePath":"pages/index/index",
@@ -37,7 +37,7 @@
         "pagePath":"pages/MapPage/MapPage",
         "iconPath": "res/png resource/bar_home_black.png",
         "selectedIconPath":"res/png resource/bar_home.png",
-        "text":"上传"
+        "text":"地图"
       },
       {
         "pagePath":"pages/More/More",

@@ -17,7 +17,10 @@
         </swiper-item>
       </swiper>
       <view class='buttonView'><!--按钮区，上传等按钮显示在这里-->
-        <view class='notice' hover-class="hover"><text>上传图片</text></view>
+        <view class='notice' hover-class="hover">
+          <image src='../../res/camera.png' class="button1-image"></image>
+          <text>上传图片</text>
+        </view>
         <view class='notice' hover-class="hover"><text>使用指南</text></view>
         <view class='notice' hover-class="hover"><text>系统公告</text></view>
       </view>

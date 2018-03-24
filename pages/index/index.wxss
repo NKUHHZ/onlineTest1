@@ -21,8 +21,8 @@ page{
 }
 .on{
   text-align: center;
-  color:#ed1941;
-  border-bottom: 1rpx solid #ed1941;
+  color:#45b97c;
+  border-bottom: 1rpx solid #45b97c;
 }
 
 .swiper{
@@ -122,8 +122,18 @@ page{
 
 .notice{ /*按钮区文字的属性*/
   font-family: "宋体";
-  border:1rpx solid #ed1941;
   padding: 5rpx;
   font-size: 30rpx;
-  background: #fffef9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button1-image{
+  border-radius: 50%;
+  border:1rpx solid gree;
+  width: 80rpx;
+  height:80rpx;
+  margin:20rpx;
 }
