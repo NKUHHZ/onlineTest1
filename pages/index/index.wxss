@@ -121,9 +121,9 @@ page{
 }
 
 .notice{ /*按钮区文字的属性*/
-  font-family: "宋体";
+  font-family: "楷体";
   padding: 5rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -132,8 +132,9 @@ page{
 
 .button1-image{
   border-radius: 50%;
-  border:1rpx solid gree;
-  width: 80rpx;
-  height:80rpx;
-  margin:20rpx;
+  border:1rpx solid springgreen;
+  width: 65rpx;
+  height:65rpx;
+  padding:20rpx;
+  margin-bottom:10rpx;
 }

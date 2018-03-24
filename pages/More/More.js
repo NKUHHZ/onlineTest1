@@ -4,6 +4,8 @@ const app = getApp()
 
 Page({
   data: {
+    feedbackValue:null,
+    showModal:false,
     userInfo:{},
     user_icon:'../../res/user-unlogin.png',
     user_name:'点击登陆',
@@ -32,17 +34,62 @@ Page({
       {
         isunread: false,
         icon:'../../res/png resource/bar_home_black.png',
-        text:'关于小程序'
+        text:'提交反馈'
       },
     ]
     },
-    logout:function(){
+    logout:function(){//退出登陆
       app.globalData.loginStatus='fail';
       this.setData({
         loginStatus:false,
       })
     },
-  tap:function(e){
+    /**
+     * 弹出框蒙层截断touchmove事件
+     */
+    preventTouchMove: function () {
+    },
+    /**
+     * 隐藏模态对话框
+     */
+    hideModal: function () {
+      this.setData({
+        showModal: false
+      });
+    },
+    /**
+     * 对话框取消按钮点击事件
+     */
+    onCancel: function () {
+      this.data.feedbackValue=null;//取消将反馈重置
+      this.hideModal();
+    },
+    /**
+     * 对话框确认按钮点击事件
+     */
+    onConfirm: function () {
+      console.log(this.data.feedbackValue)
+      sendFeedback(this);
+      this.data.feedbackValue=null;//点击了确定以后将反馈重置
+      this.hideModal();
+    },
+    //点击了键盘上的完成按钮
+    clickConfirm:function(e){
+      this.setData({
+        feedbackValue:e.detail.value
+      })
+    },
+    loseCursor:function(e){//失去输入焦点时触发
+      this.setData({
+        feedbackValue: e.detail.value
+      })
+    },
+    inputChange:function(e){//输入改变的时候触发
+      this.setData({
+        feedbackValue: e.detail.value
+      })
+    },
+  tap:function(e){//判断点击了哪个按钮
     console.log(e.currentTarget.dataset.index);
     var loginStatus = app.globalData.loginStatus;
     if(loginStatus!='success'){
@@ -70,10 +117,9 @@ Page({
         })
         break;
       case 3:
-        wx.showModal({
-          title: 'About',
-          content: '版本1.0，提供了上传，动态展示，地图展示，动态关注，查看上传记录功能.有任何问题可以到我们公众号留言哦',
-          showCancel:false,
+        //弹出反馈框，输入反馈
+        this.setData({
+          showModal: true
         })
         break;
     }
@@ -95,6 +141,7 @@ Page({
   },
   onShow:function(){
     getUserUpload(this);
+    updateUserStatus(this);
   }
 })
 
@@ -328,5 +375,18 @@ function getUserUpload(that){
         showCancel: false,
       })
     },
+  })
+}
+
+function sendFeedback(that){
+  wx.request({
+    url: 'https://brightasdream.cn/uploadImage/handlewritefeedback',
+    data:{
+      'user_id':wx.getStorageSync('session_key'),
+      'content':that.data.feedbackValue
+    },
+    success:function(res){
+      console.log('上传'+res.data);
+    }
   })
 }
