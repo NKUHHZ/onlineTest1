@@ -3,6 +3,7 @@ var QQMapWX=require('../../libs/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 Page({
   data: {
+    i:'0',
     latitude: '0',
     longitude: '0',
     ifAnonymity: '0',
@@ -16,22 +17,25 @@ Page({
     selected:false,
     poluteType:'请选择污染类型',
     open:false,
-    types:["气体污染","垃圾污染","水体污染","其他"]
+    types:['气体污染','垃圾污染','水体污染','其他']
   },
   showitem:function(){
       this.setData({
         open:!this.data.open
       })
   },
-  selectType:function(e){
-    var temp = e.currentTarget.dataset.index
-    console.log(temp);
+  pickerBind: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      poluteType:this.data.types[temp],
-      open:false,
-      selected:true
+      i: e.detail.value
+    })
+    this.setData({
+      poluteType: this.data.types[this.data.i],
+      open: false,
+      selected: true
     })
   },
+
   onLoad: function (options) {
     wx.showModal({
       title: '注意',

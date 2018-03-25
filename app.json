@@ -36,7 +36,7 @@
       {
         "pagePath":"pages/MapPage/MapPage",
         "iconPath": "res/png resource/map3.png",
-        "selectedIconPath":"res/png resource/map4.png",
+        "selectedIconPath":"res/png resource/map5.png",
         "text":"地图"
       },
       {
