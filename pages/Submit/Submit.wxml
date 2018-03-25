@@ -1,34 +1,46 @@
 <!--上传页面-->
 <view class="a">
-<view class="itemView">
-   
-  <text class='text_2'>是否匿名上传</text>
-<switch type="switch"  bindchange="listenerSwitch" />
+<view class="b">
+ <view class="itemView">
+    <textarea class="discription"placeholder="请添加描述"placeholder-class="discription-text"auto-focus></textarea>
+  </view>
+  <view class="imageView">
+    <view id="panel" class="flex-column">
+        <view class="flex-row">
+          <image src="{{imageUrl1}}" class="flex-cell" mode="aspectFit"></image>
+          <image src="{{imageUrl2}}" class="flex-cell" mode="aspectFit"></image>
+          <image src="{{imageUrl3}}" class="flex-cell" mode="aspectFit"></image>
+          <image src="{{imageUrl4}}" class="flex-cell" mode="aspectFit"></image>
+        </view>
+      </view>
+      </view>
+<view class="type">
+<image src='../../res/user-unlogin.png' class="location-image"></image>
+    <view class="UL"><text class='text_2'>是否匿名上传</text>
+  <switch type="checkbox" class="Switch" bindchange="listenerSwitch" /></view>
 </view>
+ 
+  <view class="select"> 
+  <picker class="type-pike" mode="selector" range="{{types}}" value="{{i}}" bindchange="pickerBind">
+  <image src='../../res/type.png' class="location-image"></image>
+    <text class="type-select">请选择污染类型：</text>
+    <text class="type-text">{{types[i]}}</text>
+  </picker>
+  </view>
+ 
 
-<view class="page">
-  <view class="page_bd">
-    <view class="body_head" bindtap="showitem">
-      <text>{{poluteType}}</text>
-      <image src='../../res/arrow-down.png' class="arrow"></image>
+   <view class="addressShow">
+    <view> 
+        <image src='../../res/png resource/map3.png' class="location-image"></image>
+        <text class='address'>{{address}}</text>
     </view>
-    <view  class="{{open?'display_show':'display_none'}}"   wx:for="{{types}}" wx:item="{{item}}" wx:key="{{index}}">
-      <view bindtap='selectType' data-index="{{index}}">{{item}}</view>
-    </view>
+ </view>
+  
+
+  
+  
+    <button class='button1' bindtap='selectImage'size="default" hover-class="buttonHover">选择图片</button><!--图片选择按钮-->
+    <button class='button1' bindtap='upload' disabled="{{disabled}}"hover-class="buttonHover">点击上传</button><!--图片上传按钮-->
   </view>
 </view>
-  <view>
-     <view id="panel" class="flex-column">
-  <view class="flex-row">
-    <image src="{{imageUrl1}}" class="flex-cell" mode="aspectFit"></image>
-    <image src="{{imageUrl2}}" class="flex-cell" mode="aspectFit"></image>
-    <image src="{{imageUrl3}}" class="flex-cell" mode="aspectFit"></image>
-    <image src="{{imageUrl4}}" class="flex-cell" mode="aspectFit"></image>
-  </view>
-</view>
-  <view style='margin-top:80rpx;margin-bottom:40rpx;color:blue;'><text class='address'>{{address}}</text></view>
-  <button class='button1' bindtap='selectImage' >选择图片</button><!--图片选择按钮-->
-  <button class='button1' bindtap='upload' disabled="{{disabled}}">点击上传</button><!--图片上传按钮-->
-  </view>
-  </view>
 

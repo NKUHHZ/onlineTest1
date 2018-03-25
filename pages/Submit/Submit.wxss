@@ -2,12 +2,34 @@
 page{
   background-color:whitesmoke;
 }
-.itemView{
-  padding-top: 50rpx;
+.b{
+  display:flex;
+  flex-direction:column;
+  width:100%;
 }
-.text_2{
-
-  color:#666699;
+.discription-text{
+  color:#CCCCCC;
+  font-family:"宋体";
+  font-weight:100;
+  font-size:20px;
+}
+.discription{
+  font-size:20px;
+  height:250rpx;
+  width:100%;
+  background-color:white;
+  border-color:whitesmoke;
+  border-bottom:solid 1px whitesmoke;
+}
+.itemView{
+  padding-top:100rpx;
+}
+.location-image{
+   width: 50rpx;
+  height:50rpx;
+  margin-top:5rpx;
+  margin-right:15rpx;
+  /*margin:10rpx;*/
 }
 
 .button1{
@@ -31,6 +53,7 @@ page{
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+
 }
 
 .flex-cell{
@@ -66,9 +89,66 @@ page{
 .display_none{
   display: none;
 }
-
 .arrow{
   width: 80rpx;
   height:60rpx;
   margin-left:80rpx;
+}
+.type{
+  border-top:solid 1px whitesmoke;
+  border-bottom:solid 1px whitesmoke;
+  background-color:white;
+  width:100%;
+  height:55rpx;
+  display:flex;
+  flex-direction: row;
+}
+.type-text{
+  margin-top:40rpx;
+  font-weight:300;
+  font-size:30rpx;
+  color:#191970;
+
+}
+.type-select{
+  font-weight:300;
+  font-size:30rpx;
+  color:#000000;
+  
+}
+.text_2{
+  margin-top:10rpx;
+  font-size:30rpx;
+  font-weight:300;
+  color:#000000;
+}
+.UL{
+  display:flex;
+  flex-direction:row;
+  margin-right:10rpx;
+}
+.select{
+  display:flex;
+  flex-direction:column;
+  height:55rpx;
+  background-color:white;
+  border-bottom:solid 1px whitesmoke;
+
+}
+.button-hover{
+  background-color:white;
+}
+.buttonHover
+{
+  background-color:#20B2AA;
+}
+.addressShow{
+  background-color:white;
+  width:100%;
+  border-bottom:solid 1px whitesmoke;
+}
+.address{
+  font-size:30rpx;
+  font-weight:300;
+  color:#000000;
 }
