@@ -1,20 +1,22 @@
 <!--用户-->
 <view wx:for="{{userInfo}}">
- <view class='userPic'> 
+  <view class='userPic'> 
 
-  <image class="image_frame" src='{{activity.ifAnonymity=="1"?userIcon:item.head_portrait}}
-  mode="aspectFill" >  </image>  <!--imageUr是加载图片的地址-->
-  <text class="userinfo_text">{{activity.ifAnonymity=="1"?'匿名用户':item.user_name}}</text>
-</view>
+    <image class="image_frame" src='{{activity.ifAnonymity=="1"?userIcon:item.head_portrait}}
+    mode="aspectFill" >  </image>  <!--imageUr是加载图片的地址-->
+    <text class="userinfo_text">{{activity.ifAnonymity=="1"?'匿名用户':item.user_name}}</text>
+  </view>
 </view>
 <view>
-<view class="Image">
+  <view>
+    <text>{{activity.description}}</text>
+  </view>
+  <view class="Image">
     <view  wx:for="{{Icon}}">
       <image src="{{item}}"class="storyImage"bindtap="preview" data-src="{{item}}" ></image>
     </view>
-</view>
+  </view>
   <view class="list">
-   
     <view>
       <text class="text_type">污染类型：{{activity.type}}</text>
       <text class="text_attention">关注：{{activity.attention_number}}</text>

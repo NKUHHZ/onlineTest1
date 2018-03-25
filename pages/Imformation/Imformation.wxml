@@ -1,15 +1,9 @@
  <view>
-  <image class="image_frame" src="{{imageUrl1}}" mode="aspectFill">  </image>  <!--imageUr是加载图片的地址-->
-  <image class="image_frame" src="{{imageUrl2}}" mode="aspectFill">  </image>
-  <image class="image_frame" src="{{imageUrl3}}" mode="aspectFill">  </image>
-  <button type="primary">点击上传照片</button><!--图片上传按钮-->
+  <view>
+    <text>{{article.title}}</text>
+    <text>{{article.content}}</text>
+    <view wx:for="{{article.image_path}}">
+      <image src="{{item}}"></image>
+    </view>
   </view>
-<view>
-<text>{{"关注度"+attention}}
-{{"地区"+location}}
-{{"上传时间"+time}}</text>
-</view>
-<button type="primary">报错</button>
-<button type="primary">关注</button>
-<button type="primary">地图</button>
-
+ </view>

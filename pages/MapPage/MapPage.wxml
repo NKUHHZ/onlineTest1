@@ -1,10 +1,10 @@
 
-
-
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}"  bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 850rpx;" bindtap='chooseLocation'></map>
 <view class='submitView'>
   <view class="button1" bindtap='toSubmit'>
     <image src='../../res/camera.png' class="button1-image"></image>
     <text style='text-align:center;'>点击上传图片证据</text>
   </view>
 </view>
+
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}"  bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 850rpx;" bindtap='chooseLocation'></map>
+

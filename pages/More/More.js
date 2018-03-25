@@ -127,8 +127,8 @@ Page({
   },
   tapLogin:function(){
     var that = this;
-    var loginS = that.data.loginStatus;
-    if(loginS==true) {
+    var loginS = app.globalData.loginStatus;
+    if(loginS=='success') {
       console.log('用户已经登陆点击请求登陆');
       return;
     }
@@ -140,37 +140,63 @@ Page({
       updateUserStatus(that);
   },
   onShow:function(){
-    getUserUpload(this);
-    updateUserStatus(this);
+    if(app.globalData.loginStatus=='success') {
+      updateUserStatus(this);
+      getUserUpload(this);
+    }
   }
 })
 
 function updateUserStatus(that){
-  if (app.globalData.userInfo) {
-    that.setData({
-      userInfo: app.globalData.userInfo,
+  wx.getSetting({
+    success: res => {
+      if (res.authSetting['scope.userInfo']) {
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框      
+        wx.getUserInfo({
+          success: res => {
+            // 可以将 res 发送给后台解码出 unionId
 
-    })
-  } else if (that.data.canIUse) {
-    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    // 所以此处加入 callback 以防止这种情况
-    app.userInfoReadyCallback = res => {
-      that.setData({
-        userInfo: res.userInfo,
-        hasUserInfo: true
-      })
-    }
-  } else {
-    // 在没有 open-type=getUserInfo 版本的兼容处理
-    wx.getUserInfo({
-      success: res => {
-        app.globalData.userInfo = res.userInfo
-        that.setData({
-          userInfo: res.userInfo
+            app.globalData.userInfo = res.userInfo;
+            app.data.userInfo = res.userInfo;
+            that.setData({
+              userInfo:res.userInfo,
+              user_icon: that.data.userInfo.avatarUrl,
+              user_name: that.data.userInfo.nickName,
+            })
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
+            if (that.userInfoReadyCallback) {
+              that.userInfoReadyCallback(res);
+            }
+          }
+        })
+      } else {
+        wx.authorize({
+          scope: 'scope.userInfo',
+          success:function(){
+            wx.getUserInfo({
+              success: res => {
+                // 可以将 res 发送给后台解码出 unionId
+
+                app.globalData.userInfo = res.userInfo;
+                app.data.userInfo = res.userInfo;
+                that.setData({
+                  userInfo: res.userInfo,
+                  user_icon: that.data.userInfo.avatarUrl,
+                  user_name: that.data.userInfo.nickName,
+                })
+                // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                // 所以此处加入 callback 以防止这种情况
+                if (that.userInfoReadyCallback) {
+                  that.userInfoReadyCallback(res);
+                }
+              }
+            })
+          }
         })
       }
-    })
-  }
+    }
+  })
 }
 
 function tryLogin(that){
@@ -307,6 +333,8 @@ function tryLogin(that){
   wx.hideLoading();
   //更新用户信息
   updateUserStatus(that);
+  //得到关注数和上传记录数
+  getUserUpload(that);
 }
 
 function getUserUpload(that){
@@ -378,6 +406,7 @@ function getUserUpload(that){
   })
 }
 
+//发送反馈到服务器上
 function sendFeedback(that){
   wx.request({
     url: 'https://brightasdream.cn/uploadImage/handlewritefeedback',
@@ -386,7 +415,16 @@ function sendFeedback(that){
       'content':that.data.feedbackValue
     },
     success:function(res){
+      wx.showToast({
+        title: '提交成功，感谢您的反馈！',
+        duration:2000
+      })
       console.log('上传'+res.data);
+    },
+    fail:function(e){
+      wx.showToast({
+        title: '提交失败，请检查您的网络设置！',
+      })
     }
   })
 }

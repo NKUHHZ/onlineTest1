@@ -9,6 +9,10 @@ Page(
     isAttenioned:false,
     userIcon:'../../res/user-unlogin.png'
   },
+  
+  /*
+  * 关注用户，如果已经关注那么是取消关注，否则就是关注
+  */
   attentionUser:function(){
     var that = this;
     if(that.data.isAttentioned){
@@ -38,7 +42,7 @@ Page(
       })
       return;
     }
-   
+   //关注
     wx.request({
       url: 'https://brightasdream.cn/uploadImage/handleconcerndynamic',
       data:{
@@ -70,12 +74,11 @@ Page(
       
       var that=this;
       that.setData({
-        activity: app.globalData.storyListG,
-        num: options.number
-  
+        activity: app.globalData.storyListG[options.index],
+        num: options.index
       })
       console.log(that.data.activity);
-      var l = app.globalData.storyListG;
+      var l = app.globalData.storyListG[that.data.num];
       var image_path = l.image_path;
       var temp = image_path.split("&");
       var userId = l.uploadId.split("$");
@@ -159,6 +162,7 @@ Page(
       });
       
     },
+    //预览图片
     preview :function(res)
     {
       var current = res.currentTarget.dataset.src;
