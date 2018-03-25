@@ -6,14 +6,14 @@
     <view class="swiper-tab-list {{currentTab==2?'on':''}}" data-current="2" bindtap="swichNav"><text class="textf">热点</text></view>
   </view>
   <!--添加tab-->
-  <swiper current="{{currentTab}}" class="swiper-box" style="height:{{winHeight - 31}}px" bindchange="tab_slide">
+  <swiper current="{{currentTab}}" class="swiper-box" style="height:{{winHeight}}px" bindchange="tab_slide">
   <swiper-item>
-  <scroll-view scroll-y="true" upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" style="height:1000rpx">
+  <scroll-view scroll-y="true" upper-threshold="50" lower-threshold="100" bindscrolltolower="getAnnouncement" style="height:1000rpx">
     <view style='height:900rpx;'>
       <!--滑块-->
       <swiper indicator-dots="true" autoplay="true" duration="100" bindchange="listenSwiper" class="swiper">
         <swiper-item wx:for="{{topStories}}">
-        <image mode="scaleToFill" src="{{item}}"class="slide-image"/>
+        <image mode="scaleToFill" src="{{item.image_path[0]}}"class="slide-image"/>
         </swiper-item>
       </swiper>
       <view class='buttonView'><!--按钮区，上传等按钮显示在这里-->
@@ -31,17 +31,12 @@
       </view>
   <!-- 列表 -->
     
-      <view wx:for="{{storyList}}" wx:for-index="i"class="storyList" bindtap="tap" data-index="{{i}}" data-story="{{storyList[i]}}">
-        <image src="{{Icon[i][0]}}"class="listImage"></image>
+      <view wx:for="{{articles}}" wx:for-index="i"class="storyList" bindtap="tap" data-index="{{i}}">
+        <image src="{{item.image_path[0]}}"class="listImage"></image>
         <view class="listWord">
           <view>
-            <text class="uploadAttention">关注：{{item.attention_number}}</text>
-            <text class="type">污染类型：{{item.type}}</text>
+            <text class="uploadAttention">{{item.title}}</text>
           </view>
-        <view>
-          <text class="uploadTime">上传时间：{{item.upload_time}}</text><text class="look-number">浏览量:{{item.look_number}}</text>
-        </view>
-
         </view>
 
       </view>
@@ -54,11 +49,11 @@
     </view>
   </scroll-view>
   </swiper-item>
-
+<!--最新模块-->
   <swiper-item>
     <scroll-view scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" style="height:1000rpx">
       <view wx:for="{{storyList}}"  wx:for-index="i">
-        <navigator url='../Activity/Activity?message={{item}}' hover-class='hover' class='storyList'><!--导航到详情页面-->
+        <navigator url='../Activity/Activity?index={{i}}' hover-class='hover' class='storyList'><!--导航到详情页面-->
           <image src="{{Icon[i][0]}}"class="listImage"></image>
           <view class="listWord">
             <view>
@@ -71,12 +66,38 @@
           </view>
         </navigator>
       </view>
+      <view>
+        <view wx:if="{{hiden}}" class="textNothing">
+          <image src="../../res/loading.gif"class="moreImage"></image>
+        </view>
+        <view wx:else class="textNothing"><text>没有更多了</text></view>
+      </view>
     </scroll-view>
   </swiper-item>
+  <!--最热模块-->
   <swiper-item>
-    <view>
-    最热
-    </view>
+    <scroll-view scroll-y="true"  upper-threshold="50" lower-threshold="100" bindscrolltolower="LM" style="height:1000rpx">
+      <view wx:for="{{storyList}}"  wx:for-index="i">
+        <navigator url='../Activity/Activity?index={{i}}' hover-class='hover' class='storyList'><!--导航到详情页面-->
+          <image src="{{Icon[i][0]}}"class="listImage"></image>
+          <view class="listWord">
+            <view>
+              <text class="uploadAttention">关注：{{item.attention_number}}</text>
+              <text class="type">污染类型：{{item.type}}</text>
+            </view>
+            <view>
+              <text class="uploadTime">上传时间：{{item.upload_time}}</text><text class="look-number">浏览量:{{item.look_number}}</text>
+            </view>
+          </view>
+        </navigator>
+      </view>
+      <view>
+        <view wx:if="{{hiden}}" class="textNothing">
+          <image src="../../res/loading.gif"class="moreImage"></image>
+        </view>
+        <view wx:else class="textNothing"><text>没有更多了</text></view>
+      </view>
+    </scroll-view>
   </swiper-item>
   </swiper>
 </view>

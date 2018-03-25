@@ -8,7 +8,9 @@ App({
   globalData: {
     userInfo: null,
     loginStatus: 'fail',
-    storyListG:{}
+    storyListG:{},
+    announceArray:[],
+    articleArray:[],
   },
   onLaunch: function () {
     if (wx.getStorageSync("session_key")) {
